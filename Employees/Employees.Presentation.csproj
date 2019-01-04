@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A7A05666-6F73-4DA6-B49F-F447A519F6EA}</ProjectGuid>
+    <ProjectGuid>{790B3A29-C884-4C6D-BDB6-56119EA567C4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Employees</RootNamespace>
     <AssemblyName>Employees</AssemblyName>
@@ -75,6 +75,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Employees.Domain\Employees.Domain.csproj">
+      <Project>{8e76b3d0-5c5b-49cd-b32c-c856a243b48b}</Project>
+      <Name>Employees.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="Employees.Infrastructure\Employees.Infrastructure.csproj">
+      <Project>{0e06b5a1-b793-4a9b-8001-66d961a5b033}</Project>
+      <Name>Employees.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
