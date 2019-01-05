@@ -24,18 +24,27 @@ namespace Employees
 				employeesListBox.Items.Add(employee);
 
 			}
-			
 		}
 
 		private void EditEmployeeClick(object sender, EventArgs e)
 		{
 			var selectedEmployee = employeesListBox.SelectedItem as Employee;
-			var _EmployeeEditForm = new EmployeeEditForm();
-			_EmployeeEditForm.SelectedItem = selectedEmployee;
-			_EmployeeEditForm.EditedEmployeeSetText();
-			_EmployeeEditForm.ShowDialog();
+			var employeeEditForm = new EmployeeEditForm {SelectedItem = selectedEmployee};
+			if (selectedEmployee == null) return;
+			employeeEditForm.EditedEmployeeSetText();
+			employeeEditForm.ShowDialog();
+			AddRefreshList();
+		}
 
-			var a = 5;
+		private void AddRefreshList()
+		{
+			employeesListBox.Items.Clear();
+			foreach (var employee in _employeeRepository.Employees)
+			{
+				employeesListBox.Items.Add(employee);
+
+			}
+
 		}
 	}
 }

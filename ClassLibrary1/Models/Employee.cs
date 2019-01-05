@@ -44,7 +44,7 @@ namespace ClassLibrary1.Models
 
 		public override string ToString()
 		{
-			return $"{FirstName}  {LastName} {Oib} {DateOfBirth} {WorkPosition}";
+			return $"{FirstName} {LastName} {Oib} {DateOfBirth} {WorkPosition}";
 		}
 	}
 }

@@ -30,6 +30,7 @@
 		{
 			this.employeesListBox = new System.Windows.Forms.ListBox();
 			this.editSelectedEmployeeButton = new System.Windows.Forms.Button();
+			this.employeeDeleteButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// employeesListBox
@@ -51,11 +52,21 @@
 			this.editSelectedEmployeeButton.UseVisualStyleBackColor = true;
 			this.editSelectedEmployeeButton.Click += new System.EventHandler(this.EditEmployeeClick);
 			// 
+			// employeeDeleteButton
+			// 
+			this.employeeDeleteButton.Location = new System.Drawing.Point(635, 185);
+			this.employeeDeleteButton.Name = "employeeDeleteButton";
+			this.employeeDeleteButton.Size = new System.Drawing.Size(75, 23);
+			this.employeeDeleteButton.TabIndex = 2;
+			this.employeeDeleteButton.Text = "Delete";
+			this.employeeDeleteButton.UseVisualStyleBackColor = true;
+			// 
 			// EmployeeListForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.employeeDeleteButton);
 			this.Controls.Add(this.editSelectedEmployeeButton);
 			this.Controls.Add(this.employeesListBox);
 			this.Name = "EmployeeListForm";
@@ -68,5 +79,6 @@
 
 		private System.Windows.Forms.ListBox employeesListBox;
 		private System.Windows.Forms.Button editSelectedEmployeeButton;
+		private System.Windows.Forms.Button employeeDeleteButton;
 	}
 }

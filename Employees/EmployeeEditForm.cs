@@ -23,14 +23,13 @@ namespace Employees
 			{
 				employeeEditWorkPositionComboBox.Items.Add(workPosition);
 			}
-
-			
-
 			
 		}
 
 		public void EditedEmployeeSetText()
 		{
+			
+		 
 			employeeEditFirstNameTextBox.Text = SelectedItem.FirstName;
 			employeeLastNameEditTextBox.Text = SelectedItem.LastName;
 			employeeEditDateTimePicker.Value = SelectedItem.DateOfBirth;
@@ -39,6 +38,11 @@ namespace Employees
 
 		private void EmployeeEditSaveButton(object sender, EventArgs e)
 		{
+			SelectedItem.FirstName = employeeEditFirstNameTextBox.Text;
+			SelectedItem.LastName = employeeLastNameEditTextBox.Text;
+			SelectedItem.DateOfBirth = employeeEditDateTimePicker.Value;
+			SelectedItem.WorkPosition = (WorkPosition) employeeEditWorkPositionComboBox.SelectedItem;
+			Close();
 
 		}
 	}
