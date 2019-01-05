@@ -60,6 +60,7 @@
 			this.employeeDeleteButton.TabIndex = 2;
 			this.employeeDeleteButton.Text = "Delete";
 			this.employeeDeleteButton.UseVisualStyleBackColor = true;
+			this.employeeDeleteButton.Click += new System.EventHandler(this.EmployeeDeleteClick);
 			// 
 			// EmployeeListForm
 			// 

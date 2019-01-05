@@ -28,9 +28,11 @@ namespace Employees
 
 		private void EditEmployeeClick(object sender, EventArgs e)
 		{
+
 			var selectedEmployee = employeesListBox.SelectedItem as Employee;
-			var employeeEditForm = new EmployeeEditForm {SelectedItem = selectedEmployee};
 			if (selectedEmployee == null) return;
+
+			var employeeEditForm = new EmployeeEditForm {SelectedItem = selectedEmployee};
 			employeeEditForm.EditedEmployeeSetText();
 			employeeEditForm.ShowDialog();
 			AddRefreshList();
@@ -42,8 +44,19 @@ namespace Employees
 			foreach (var employee in _employeeRepository.Employees)
 			{
 				employeesListBox.Items.Add(employee);
-
 			}
+		}
+
+		private void EmployeeDeleteClick(object sender, EventArgs e)
+		{
+			var selectedEmployee = employeesListBox.SelectedItem as Employee;
+			if (selectedEmployee == null) return;
+			_employeeRepository.Employees.Remove(selectedEmployee);
+			AddRefreshList();
+
+
+
+
 
 		}
 	}
