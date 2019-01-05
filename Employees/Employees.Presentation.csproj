@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{790B3A29-C884-4C6D-BDB6-56119EA567C4}</ProjectGuid>
+    <ProjectGuid>{521ED0F2-BD81-496A-A512-F4FC9EE37CB8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Employees</RootNamespace>
     <AssemblyName>Employees</AssemblyName>
@@ -46,14 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -77,12 +80,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Employees.Domain\Employees.Domain.csproj">
-      <Project>{8e76b3d0-5c5b-49cd-b32c-c856a243b48b}</Project>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Employees.Domain\Employees.Domain.csproj">
+      <Project>{e7d452a2-6b76-43a4-b266-39fd4c1f08b9}</Project>
       <Name>Employees.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="Employees.Infrastructure\Employees.Infrastructure.csproj">
-      <Project>{0e06b5a1-b793-4a9b-8001-66d961a5b033}</Project>
+      <Project>{c37e100f-882d-4908-940e-3e1077de6fdb}</Project>
       <Name>Employees.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
