@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmployeesDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeesDetails.Designer.cs">
+      <DependentUpon>EmployeesDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeesModify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeesModify.Designer.cs">
+      <DependentUpon>EmployeesModify.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,6 +65,18 @@
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectsDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectsDetails.Designer.cs">
+      <DependentUpon>ProjectsDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectsModify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectsModify.Designer.cs">
+      <DependentUpon>ProjectsModify.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

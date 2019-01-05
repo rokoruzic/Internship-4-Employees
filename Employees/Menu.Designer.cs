@@ -42,6 +42,7 @@
 			this.employeesDetailsButton.TabIndex = 0;
 			this.employeesDetailsButton.Text = "Employees details";
 			this.employeesDetailsButton.UseVisualStyleBackColor = true;
+			this.employeesDetailsButton.Click += new System.EventHandler(this.EmployeesDetailsClick);
 			// 
 			// modifyEmployeesButton
 			// 
@@ -51,6 +52,7 @@
 			this.modifyEmployeesButton.TabIndex = 1;
 			this.modifyEmployeesButton.Text = "Modify employees";
 			this.modifyEmployeesButton.UseVisualStyleBackColor = true;
+			this.modifyEmployeesButton.Click += new System.EventHandler(this.EmployeesModifyClick);
 			// 
 			// ProjectsDetailsButton
 			// 
@@ -60,6 +62,7 @@
 			this.ProjectsDetailsButton.TabIndex = 2;
 			this.ProjectsDetailsButton.Text = "Projects details";
 			this.ProjectsDetailsButton.UseVisualStyleBackColor = true;
+			this.ProjectsDetailsButton.Click += new System.EventHandler(this.ProjectDetailsClick);
 			// 
 			// modifyProjectsButton
 			// 
@@ -69,6 +72,7 @@
 			this.modifyProjectsButton.TabIndex = 3;
 			this.modifyProjectsButton.Text = "Modify projects";
 			this.modifyProjectsButton.UseVisualStyleBackColor = true;
+			this.modifyProjectsButton.Click += new System.EventHandler(this.ProjectsModifyClick);
 			// 
 			// Menu
 			// 

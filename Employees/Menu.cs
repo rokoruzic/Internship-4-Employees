@@ -16,5 +16,32 @@ namespace Employees
 		{
 			InitializeComponent();
 		}
+
+		private void EmployeesDetailsClick(object sender, EventArgs e)
+		{
+			var employeesDetailsClick = new EmployeesDetails();
+			employeesDetailsClick.ShowDialog();
+			
+
+		}
+
+		private void EmployeesModifyClick(object sender, EventArgs e)
+		{
+			var employeesModifyClick = new EmployeesModify();
+			employeesModifyClick.ShowDialog();
+
+		}
+
+		private void ProjectDetailsClick(object sender, EventArgs e)
+		{
+			var projectDetailsClick = new ProjectsDetails();
+			projectDetailsClick.ShowDialog();
+		}
+
+		private void ProjectsModifyClick(object sender, EventArgs e)
+		{
+			var projectModifyClick = new ProjectsModify();
+			projectModifyClick.ShowDialog();
+		}
 	}
 }
