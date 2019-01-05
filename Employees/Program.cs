@@ -16,7 +16,8 @@ namespace Employees
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Menu());
+			Application.Run(new EmployeeListForm());
+			//Application.Run(new EmployeeEditForm());
 		}
 	}
 }

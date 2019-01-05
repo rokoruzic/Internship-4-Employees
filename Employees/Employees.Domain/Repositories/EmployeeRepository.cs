@@ -10,11 +10,12 @@ namespace Employees.Domain.Repositories
 {
 	public class EmployeeRepository
 	{
-		private List<Employee> _employees;
+		public List<Employee> Employees;
 
 		public EmployeeRepository()
 		{
-			_employees = new List<Employee>()
+
+			Employees = new List<Employee>()
 			{
 				new Employee("Jure","Radalj","123456",WorkPosition.Developer,new DateTime(1993,12,23)),
 				new Employee("Petra c","Peslac","987654",WorkPosition.Secretary,new DateTime(1994,12,20)),
@@ -23,5 +24,7 @@ namespace Employees.Domain.Repositories
 				new Employee("Jesse","pinkman","109983",WorkPosition.WebDeveloper,new DateTime(1985,1,9))
 			};
 		}
+
+		
 	}
 }

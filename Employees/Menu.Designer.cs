@@ -29,59 +29,34 @@
 		private void InitializeComponent()
 		{
 			this.employeesDetailsButton = new System.Windows.Forms.Button();
-			this.modifyEmployeesButton = new System.Windows.Forms.Button();
 			this.ProjectsDetailsButton = new System.Windows.Forms.Button();
-			this.modifyProjectsButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// employeesDetailsButton
 			// 
-			this.employeesDetailsButton.Location = new System.Drawing.Point(166, 54);
+			this.employeesDetailsButton.Location = new System.Drawing.Point(166, 53);
 			this.employeesDetailsButton.Name = "employeesDetailsButton";
 			this.employeesDetailsButton.Size = new System.Drawing.Size(466, 73);
 			this.employeesDetailsButton.TabIndex = 0;
-			this.employeesDetailsButton.Text = "Employees details";
+			this.employeesDetailsButton.Text = "Employees";
 			this.employeesDetailsButton.UseVisualStyleBackColor = true;
-			this.employeesDetailsButton.Click += new System.EventHandler(this.EmployeesDetailsClick);
-			// 
-			// modifyEmployeesButton
-			// 
-			this.modifyEmployeesButton.Location = new System.Drawing.Point(166, 153);
-			this.modifyEmployeesButton.Name = "modifyEmployeesButton";
-			this.modifyEmployeesButton.Size = new System.Drawing.Size(466, 75);
-			this.modifyEmployeesButton.TabIndex = 1;
-			this.modifyEmployeesButton.Text = "Modify employees";
-			this.modifyEmployeesButton.UseVisualStyleBackColor = true;
-			this.modifyEmployeesButton.Click += new System.EventHandler(this.EmployeesModifyClick);
+			this.employeesDetailsButton.Click += new System.EventHandler(this.employeesDetailsButton_Click);
 			// 
 			// ProjectsDetailsButton
 			// 
-			this.ProjectsDetailsButton.Location = new System.Drawing.Point(166, 259);
+			this.ProjectsDetailsButton.Location = new System.Drawing.Point(166, 175);
 			this.ProjectsDetailsButton.Name = "ProjectsDetailsButton";
 			this.ProjectsDetailsButton.Size = new System.Drawing.Size(466, 70);
 			this.ProjectsDetailsButton.TabIndex = 2;
-			this.ProjectsDetailsButton.Text = "Projects details";
+			this.ProjectsDetailsButton.Text = "Projects";
 			this.ProjectsDetailsButton.UseVisualStyleBackColor = true;
-			this.ProjectsDetailsButton.Click += new System.EventHandler(this.ProjectDetailsClick);
-			// 
-			// modifyProjectsButton
-			// 
-			this.modifyProjectsButton.Location = new System.Drawing.Point(166, 357);
-			this.modifyProjectsButton.Name = "modifyProjectsButton";
-			this.modifyProjectsButton.Size = new System.Drawing.Size(466, 69);
-			this.modifyProjectsButton.TabIndex = 3;
-			this.modifyProjectsButton.Text = "Modify projects";
-			this.modifyProjectsButton.UseVisualStyleBackColor = true;
-			this.modifyProjectsButton.Click += new System.EventHandler(this.ProjectsModifyClick);
 			// 
 			// Menu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Controls.Add(this.modifyProjectsButton);
 			this.Controls.Add(this.ProjectsDetailsButton);
-			this.Controls.Add(this.modifyEmployeesButton);
 			this.Controls.Add(this.employeesDetailsButton);
 			this.Name = "Menu";
 			this.Text = "Menu";
@@ -92,8 +67,6 @@
 		#endregion
 
 		private System.Windows.Forms.Button employeesDetailsButton;
-		private System.Windows.Forms.Button modifyEmployeesButton;
 		private System.Windows.Forms.Button ProjectsDetailsButton;
-		private System.Windows.Forms.Button modifyProjectsButton;
 	}
 }

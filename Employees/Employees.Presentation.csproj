@@ -46,17 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmployeesDetails.cs">
+    <Compile Include="EmployeeEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmployeesDetails.Designer.cs">
-      <DependentUpon>EmployeesDetails.cs</DependentUpon>
+    <Compile Include="EmployeeEditForm.Designer.cs">
+      <DependentUpon>EmployeeEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmployeesModify.cs">
+    <Compile Include="EmployeeListForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmployeesModify.Designer.cs">
-      <DependentUpon>EmployeesModify.cs</DependentUpon>
+    <Compile Include="EmployeeListForm.Designer.cs">
+      <DependentUpon>EmployeeListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -65,19 +65,13 @@
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProjectsDetails.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ProjectsDetails.Designer.cs">
-      <DependentUpon>ProjectsDetails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ProjectsModify.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ProjectsModify.Designer.cs">
-      <DependentUpon>ProjectsModify.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EmployeeEditForm.resx">
+      <DependentUpon>EmployeeEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeListForm.resx">
+      <DependentUpon>EmployeeListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +101,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\Employees.Data.csproj">
+      <Project>{4E14B948-F0EA-4C4F-BDA6-0F5DF3FC94FA}</Project>
+      <Name>Employees.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="Employees.Domain\Employees.Domain.csproj">
       <Project>{e7d452a2-6b76-43a4-b266-39fd4c1f08b9}</Project>
       <Name>Employees.Domain</Name>
