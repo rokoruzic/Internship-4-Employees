@@ -21,10 +21,11 @@ namespace Employees.Infrastructure.Extensions
 			text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text);
 			return text;
 		}
+
 		public static string RemoveAllWhiteSpaces(this string text)
 		{
 			text = text.Trim();
-			text = text.Replace(" ","");
+			text = text.Replace(" ", "");
 			return text;
 		}
 	}
