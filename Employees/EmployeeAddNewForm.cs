@@ -26,30 +26,42 @@ namespace Employees
 				workPositionAddNewComboBox.Items.Add(workPosition);
 			}
 			dateOfBirthAddNewDateTimePicker.MaxDate = DateTime.Now.AddYears(-18);
-			
-			//if (employeeRepository1.CreateEmployee(NewEmployee))
-			//{
-			//	employeeRepository1.Employees.Add(NewEmployee);
-			//}
-		
+
+			if (firstNameAddNewTextbox.Text == null || lastNameAddNewTextbox.Text == null || oibAddNewTextbox.Text == null)
+			{
+				var EmptyAddEmployeeErrorForm = new EmptyAddEmployeeErrorForm();
+				EmptyAddEmployeeErrorForm.ShowDialog();
+				ErrorDialog.ShowDialog();
+			}
+
 		}
 
 		
 
 		private void EmployeeAddNewSaveClick(object sender, EventArgs e)
 		{
-			//firstNameAddNewTextbox.Text = NewEmployee.FirstName;
-			//lastNameAddNewTextbox.Text = NewEmployee.LastName;
-			//oibAddNewTextbox.Text = NewEmployee.Oib;
-			//dateOfBirthAddNewDateTimePicker.Value = NewEmployee.DateOfBirth;
-			var Employee = new Employee(firstNameAddNewTextbox.Text,lastNameAddNewTextbox.Text,oibAddNewTextbox.Text,(WorkPosition)workPositionAddNewComboBox.SelectedItem,dateOfBirthAddNewDateTimePicker.Value);
-			
-			if (employeeRepository1.CreateEmployee(Employee))
+			if (firstNameAddNewTextbox.Text == null || lastNameAddNewTextbox.Text == null || oibAddNewTextbox.Text == null
+			  ||  workPositionAddNewComboBox.SelectedItem==null)
 			{
-				employeeRepository1.Employees.Add(Employee);
+				var emptyAddEmployeeErrorForm = new EmptyAddEmployeeErrorForm();
+				emptyAddEmployeeErrorForm.ShowDialog();
+			}
+			else
+			{
+				var Employee = new Employee(firstNameAddNewTextbox.Text, lastNameAddNewTextbox.Text,
+					oibAddNewTextbox.Text, (WorkPosition) workPositionAddNewComboBox.SelectedItem,
+					dateOfBirthAddNewDateTimePicker.Value);
+				if (employeeRepository1.CreateEmployee(Employee))
+				{
+					employeeRepository1.Employees.Add(Employee);
+				}
 			}
 			Close();
-			
+
+
+
+
+
 
 
 		}

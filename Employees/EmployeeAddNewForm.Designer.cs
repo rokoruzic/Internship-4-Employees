@@ -34,6 +34,7 @@
 			this.dateOfBirthAddNewDateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.workPositionAddNewComboBox = new System.Windows.Forms.ComboBox();
 			this.employeeSaveAddNewButton = new System.Windows.Forms.Button();
+			this.ErrorDialog = new System.Windows.Forms.OpenFileDialog();
 			this.SuspendLayout();
 			// 
 			// firstNameAddNewTextbox
@@ -82,6 +83,10 @@
 			this.employeeSaveAddNewButton.UseVisualStyleBackColor = true;
 			this.employeeSaveAddNewButton.Click += new System.EventHandler(this.EmployeeAddNewSaveClick);
 			// 
+			// ErrorDialog
+			// 
+			this.ErrorDialog.FileName = "EmptyAddEmployeeErrorForm";
+			// 
 			// EmployeeAddNewForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -108,5 +113,6 @@
 		private System.Windows.Forms.DateTimePicker dateOfBirthAddNewDateTimePicker;
 		private System.Windows.Forms.ComboBox workPositionAddNewComboBox;
 		private System.Windows.Forms.Button employeeSaveAddNewButton;
+		private System.Windows.Forms.OpenFileDialog ErrorDialog;
 	}
 }
