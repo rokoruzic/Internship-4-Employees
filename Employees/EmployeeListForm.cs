@@ -14,16 +14,17 @@ namespace Employees
 {
 	public partial class EmployeeListForm : Form
 	{
-		public EmployeeRepository _employeeRepository;
+		public EmployeeRepository EmployeeRepository;
 		public EmployeeListForm()
 		{
 			InitializeComponent();
-			_employeeRepository= new EmployeeRepository();
-			foreach (var employee in _employeeRepository.Employees)
+			EmployeeRepository= new EmployeeRepository();
+			foreach (var employee in EmployeeRepository.Employees)
 			{
 				employeesListBox.Items.Add(employee);
 
 			}
+			
 		}
 
 		private void EditEmployeeClick(object sender, EventArgs e)
@@ -31,7 +32,6 @@ namespace Employees
 
 			var selectedEmployee = employeesListBox.SelectedItem as Employee;
 			if (selectedEmployee == null) return;
-
 			var employeeEditForm = new EmployeeEditForm {SelectedItem = selectedEmployee};
 			employeeEditForm.EditedEmployeeSetText();
 			employeeEditForm.ShowDialog();
@@ -41,7 +41,7 @@ namespace Employees
 		private void AddRefreshList()
 		{
 			employeesListBox.Items.Clear();
-			foreach (var employee in _employeeRepository.Employees)
+			foreach (var employee in EmployeeRepository.Employees)
 			{
 				employeesListBox.Items.Add(employee);
 			}
@@ -51,13 +51,19 @@ namespace Employees
 		{
 			var selectedEmployee = employeesListBox.SelectedItem as Employee;
 			if (selectedEmployee == null) return;
-			_employeeRepository.Employees.Remove(selectedEmployee);
+			EmployeeRepository.Employees.Remove(selectedEmployee);
 			AddRefreshList();
 
 		}
 
 		private void EmployeeAddNewClick(object sender, EventArgs e)
 		{
+			var employeeAddNewForm = new EmployeeAddNewForm(EmployeeRepository);
+			employeeAddNewForm.ShowDialog();
+			AddRefreshList();
+
+
+
 
 		}
 	}

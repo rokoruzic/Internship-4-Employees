@@ -27,12 +27,12 @@ namespace Employees.Domain.Repositories
 
 		public bool CreateEmployee(Employee employeeToAdd)
 		{
-			foreach (var employee1 in Employees)
+			foreach (var employee in Employees)
 			{
-				if (employee1.Oib == employeeToAdd.Oib || employeeToAdd.DateOfBirth.AddYears(18) > DateTime.Now)
+				if (employee.Oib == employeeToAdd.Oib || employeeToAdd.DateOfBirth.AddYears(18) > DateTime.Now)
 					return false;
 			}
-			Employees.Add(employeeToAdd);
+			
 			return true;
 		}
 
