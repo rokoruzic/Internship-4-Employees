@@ -54,9 +54,10 @@ namespace Employees
 			_employeeRepository.Employees.Remove(selectedEmployee);
 			AddRefreshList();
 
+		}
 
-
-
+		private void EmployeeAddNewClick(object sender, EventArgs e)
+		{
 
 		}
 	}

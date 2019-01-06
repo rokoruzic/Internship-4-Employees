@@ -23,13 +23,13 @@ namespace Employees
 			{
 				employeeEditWorkPositionComboBox.Items.Add(workPosition);
 			}
-			
+
+			employeeEditDateTimePicker.MaxDate = DateTime.Now.AddYears(-18);
+
 		}
 
 		public void EditedEmployeeSetText()
 		{
-			
-		 
 			employeeEditFirstNameTextBox.Text = SelectedItem.FirstName;
 			employeeLastNameEditTextBox.Text = SelectedItem.LastName;
 			employeeEditDateTimePicker.Value = SelectedItem.DateOfBirth;
