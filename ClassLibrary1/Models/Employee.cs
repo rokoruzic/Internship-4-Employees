@@ -10,12 +10,14 @@ namespace ClassLibrary1.Models
 {
 	public class Employee
 	{
-		private string _firstName { get; set; }
+		public List<ProjectWithWorkHours> ProjectWithWorkHours { get; set; }
+		private string _firstName;
 		public string FirstName
 		{
 			get { return _firstName; }
 			set { _firstName = value.CapitalizeFirstLetterAndRemoveMultipleWhiteSpaces(); }
 		}
+
 		private string _lastName { get; set; }
 		public string LastName
 		{
@@ -39,12 +41,11 @@ namespace ClassLibrary1.Models
 			Oib = oib;
 			WorkPosition = workPosition;
 			DateOfBirth = dateOfBirth;
-
+			ProjectWithWorkHours=new List<ProjectWithWorkHours>();
 		}
-
 		public override string ToString()
 		{
-			return $"{FirstName} {LastName} {Oib} {DateOfBirth} {WorkPosition}";
+			return $"{FirstName} {LastName} {Oib} {DateOfBirth} {WorkPosition} ";
 		}
 	}
 }

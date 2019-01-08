@@ -11,10 +11,10 @@ namespace Employees.Domain.Repositories
 	public class EmployeeRepository
 	{
 		public List<Employee> Employees;
+		
 
 		public EmployeeRepository()
 		{
-
 			Employees = new List<Employee>()
 			{
 				new Employee("Jure","Radalj","123456",WorkPosition.Developer,new DateTime(1993,12,23)),
