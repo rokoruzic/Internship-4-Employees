@@ -13,7 +13,13 @@ namespace ClassLibrary1.Models
 
 		public override string ToString()
 		{
-			return $"{Project.ToString()} {WorkHours}";
+			return $"{Project.ToString()} Work hours: {WorkHours}";
 		}
+
+		public  string ProjectName()
+		{
+			return Project.Name;
+		}
+		
 	}
 }

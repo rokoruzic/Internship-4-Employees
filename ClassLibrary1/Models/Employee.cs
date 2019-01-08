@@ -42,10 +42,66 @@ namespace ClassLibrary1.Models
 			WorkPosition = workPosition;
 			DateOfBirth = dateOfBirth;
 			ProjectWithWorkHours=new List<ProjectWithWorkHours>();
+			
 		}
 		public override string ToString()
 		{
 			return $"{FirstName} {LastName} {Oib} {DateOfBirth} {WorkPosition} ";
 		}
+
+		public string PrintFullName()
+		{
+			return $"{FirstName} {LastName} {WorkHoursCount()} ";
+		}
+
+		public int WorkHoursCount()
+		{
+			var workHoursCount = 0;
+			foreach (var workHours in ProjectWithWorkHours)
+			{
+				workHoursCount += workHours.WorkHours;
+			}
+
+			return workHoursCount;
+		}
+
+		public int NumberOfPlannedProjects()
+		{
+			int counter=0;
+			foreach (var StartEndDateTime in ProjectWithWorkHours)
+			{
+				if (StartEndDateTime.Project.StartDate > DateTime.Now)
+					counter++;
+			
+			}
+
+			return counter;
+		}
+		public int NumberOfCurrentProjects()
+		{
+			int counter = 0;
+			foreach (var StartEndDateTime in ProjectWithWorkHours)
+			{
+				if (StartEndDateTime.Project.StartDate < DateTime.Now && StartEndDateTime.Project.EndDate
+				    >DateTime.Now)
+					counter++;
+
+			}
+
+			return counter;
+		}
+		public int NumberOfPreviousProjects()
+		{
+			int counter = 0;
+			foreach (var StartEndDateTime in ProjectWithWorkHours)
+			{
+				if (StartEndDateTime.Project.EndDate < DateTime.Now)
+					counter++;
+
+			}
+
+			return counter;
+		}
+
 	}
 }

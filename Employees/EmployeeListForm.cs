@@ -28,7 +28,7 @@ namespace Employees
 				employeesListBox.Items.Add(employee);
 
 			}
-			foreach (var VARIABLE in ProjectRepository.Project)
+			foreach (var VARIABLE in ProjectRepository.Projects)
 			{
 				employeesListBox.Items.Add(VARIABLE);
 			}
@@ -41,12 +41,15 @@ namespace Employees
 			var selectedEmployee = employeesListBox.SelectedItem as Employee;
 			if (selectedEmployee == null) return;
 			var employeeEditForm = new EmployeeEditForm {SelectedItem = selectedEmployee};
+
 			employeeEditForm.EditedEmployeeSetText();
+			employeeEditForm.RefreshList();
+
 			employeeEditForm.ShowDialog();
 			AddRefreshList();
 		}
 
-		private void AddRefreshList()
+		public void AddRefreshList()
 		{
 			employeesListBox.Items.Clear();
 			foreach (var employee in EmployeeRepository.Employees)

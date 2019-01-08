@@ -13,7 +13,7 @@ namespace ClassLibrary1.Models
 		public DateTime StartDate { get; set;}
 		public DateTime EndDate { get; set; }
 		public Project(string name, List<Employee> employees,
-			DateTime startDate, DateTime endDate, List<int> workHours)
+			DateTime startDate, DateTime endDate)
 		{
 			Name = name;
 			StartDate = startDate;

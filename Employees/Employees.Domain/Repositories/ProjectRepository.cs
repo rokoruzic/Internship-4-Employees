@@ -9,23 +9,17 @@ namespace Employees.Domain.Repositories
 {
 	public class ProjectRepository:EmployeeRepository
 	{
-		public List<Project> Project;
-		public List<int> WorkHours;
+		public List<Project> Projects;
 
 		public ProjectRepository()
 		{
-			WorkHours=new List<int>();
-			WorkHours.Add(20);
-			WorkHours.Add(30);
-			WorkHours.Add(15);
-			WorkHours.Add(52);
-			WorkHours.Add(40);
-			Project = new List<Project>()
+			
+			Projects = new List<Project>()
 			{
-				new Project("Project Horde", Employees, new DateTime(2017, 12, 20),
-					new DateTime(2018, 10, 10),WorkHours),
-				new Project("Project Alliance", Employees, new DateTime(2017, 12, 20),
-				new DateTime(2018, 10, 10),WorkHours)
+				new Project("Projects Horde", Employees, new DateTime(2017, 12, 20),
+					new DateTime(2018, 10, 10)),
+				new Project("Projects Alliance", Employees, new DateTime(2017, 12, 20),
+				new DateTime(2018, 10, 10))
 			};
 		}
 	}

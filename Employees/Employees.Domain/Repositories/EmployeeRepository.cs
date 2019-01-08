@@ -21,7 +21,7 @@ namespace Employees.Domain.Repositories
 				new Employee("Petra c","Peslac","987654",WorkPosition.Secretary,new DateTime(1994,12,20)),
 				new Employee("kristian", "zolo","122122",WorkPosition.Manager,new DateTime(1994,3,20)),
 				new Employee("Skylar", "White","984123",WorkPosition.Accountant,new DateTime(1968,10,11)),
-				new Employee("Jesse","pinkman","109983",WorkPosition.WebDeveloper,new DateTime(1985,1,9))
+				new Employee("Duje","mihanovic","109983",WorkPosition.WebDeveloper,new DateTime(1985,1,9))
 			};
 		}
 
