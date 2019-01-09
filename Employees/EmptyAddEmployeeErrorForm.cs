@@ -19,9 +19,9 @@ namespace Employees
 
 		private void EmptyEmployeeAddNewErrorBackClick(object sender, EventArgs e)
 		{
-			var employeeAddNewForm = new EmployeeListForm();
-			Close();
-			employeeAddNewForm.ShowDialog();
+			//var employeeAddNewForm = new EmployeeListForm();
+			//Close();
+			//employeeAddNewForm.ShowDialog();
 		}
 	}
 }

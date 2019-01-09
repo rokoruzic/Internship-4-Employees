@@ -38,6 +38,7 @@
 			this.weeklyWorkingHoursLabel = new System.Windows.Forms.Label();
 			this.addProjectToNewEmployeeButton = new System.Windows.Forms.Button();
 			this.workHoursNumericUpDown = new System.Windows.Forms.NumericUpDown();
+			this.employeeDeleteProjectButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.workHoursNumericUpDown)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -122,11 +123,22 @@
 			this.workHoursNumericUpDown.Size = new System.Drawing.Size(177, 22);
 			this.workHoursNumericUpDown.TabIndex = 13;
 			// 
+			// employeeDeleteProjectButton
+			// 
+			this.employeeDeleteProjectButton.Location = new System.Drawing.Point(476, 240);
+			this.employeeDeleteProjectButton.Name = "employeeDeleteProjectButton";
+			this.employeeDeleteProjectButton.Size = new System.Drawing.Size(75, 23);
+			this.employeeDeleteProjectButton.TabIndex = 14;
+			this.employeeDeleteProjectButton.Text = "Delete project";
+			this.employeeDeleteProjectButton.UseVisualStyleBackColor = true;
+			this.employeeDeleteProjectButton.Click += new System.EventHandler(this.EmployeeDeleteProjectClick);
+			// 
 			// EmployeeEditForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.employeeDeleteProjectButton);
 			this.Controls.Add(this.workHoursNumericUpDown);
 			this.Controls.Add(this.addProjectToNewEmployeeButton);
 			this.Controls.Add(this.weeklyWorkingHoursLabel);
@@ -157,5 +169,6 @@
 		private System.Windows.Forms.Label weeklyWorkingHoursLabel;
 		private System.Windows.Forms.Button addProjectToNewEmployeeButton;
 		private System.Windows.Forms.NumericUpDown workHoursNumericUpDown;
+		private System.Windows.Forms.Button employeeDeleteProjectButton;
 	}
 }

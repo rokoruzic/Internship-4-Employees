@@ -17,20 +17,14 @@ namespace Employees
 	{
 		public Employee SelectedItem { get; set; }
 		public ProjectRepository ProjectRepository { get; set; }
-		public EmployeeEditForm()
+		public EmployeeEditForm(ProjectRepository projectRepository)
 		{
 			InitializeComponent();
-			ProjectRepository=new ProjectRepository();
+			ProjectRepository = projectRepository;
 			foreach (var workPosition in (WorkPosition[])Enum.GetValues(typeof(WorkPosition)))
 			{
 				employeeEditWorkPositionComboBox.Items.Add(workPosition);
 			}
-
-			
-
-
-
-
 			employeeEditDateTimePicker.MaxDate = DateTime.Now.AddYears(-18);
 
 		}
@@ -74,19 +68,44 @@ namespace Employees
 			SelectedItem.DateOfBirth = employeeEditDateTimePicker.Value;
 			SelectedItem.WorkPosition = (WorkPosition) employeeEditWorkPositionComboBox.SelectedItem;
 			SelectedItem.ProjectWithWorkHours=new List<ProjectWithWorkHours>();
+
 			foreach (var projectWithWorkHoursItem in RemoveProjectFromEmployeeComboBox.Items)
 			{
 				SelectedItem.ProjectWithWorkHours.Add(projectWithWorkHoursItem as ProjectWithWorkHours);
 			}
+			
+			var projectsToAdd = SelectedItem.ProjectWithWorkHours;
+			foreach (var project in ProjectRepository.Projects)
+			{
+				var listForForeach = project.EmployeeWithWorkHours.ToList();
+				foreach (var employeeWithWorkHours in listForForeach)
+				{
+					if (employeeWithWorkHours.Employee.Oib == SelectedItem.Oib)
+						project.EmployeeWithWorkHours.Remove(employeeWithWorkHours);
+				}
+			}
+
+			foreach (var projectWithWorkHours in projectsToAdd)
+			{
+				var employee1 = new EmployeeWithWorkHours();
+				employee1.Employee = SelectedItem;
+				employee1.WorkHours = projectWithWorkHours.WorkHours;
+				projectWithWorkHours.Project.EmployeeWithWorkHours.Add(employee1);
+
+
+
+
+			}
+
+
+
 			Close();
 		}
 
 		private void AddProjectToEmployeeClick(object sender, EventArgs e)
 		{
-
-			
 			var projectWithWorkHours = new ProjectWithWorkHours();
-			projectWithWorkHours.WorkHours = workHoursNumericUpDown.DecimalPlaces;
+			projectWithWorkHours.WorkHours = (int)workHoursNumericUpDown.Value;
 			projectWithWorkHours.Project= (Project)addProjectToEmployeeComboBox.SelectedItem;
 
 
@@ -97,6 +116,15 @@ namespace Employees
 					addProjectToEmployeeComboBox.Items.Remove(project);
 			}
 		}
-		
+
+		private void EmployeeDeleteProjectClick(object sender, EventArgs e)
+		{
+			var temp = RemoveProjectFromEmployeeComboBox.SelectedItem;
+			var temp2 = temp as ProjectWithWorkHours;
+			RemoveProjectFromEmployeeComboBox.Items.Remove(temp);
+			addProjectToEmployeeComboBox.Items.Add(temp2.Project);
+			RemoveProjectFromEmployeeComboBox.ResetText();
+
+		}
 	}
 }

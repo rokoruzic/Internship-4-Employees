@@ -51,6 +51,17 @@ namespace Employees
 			EmployeeTextBox.Text = SelectedItem.PrintFullName();
 		}
 
-		
+		private void EmployeeDetailsEditButtonClick(object sender, EventArgs e)
+		{
+			var selectedEmployee =SelectedItem as Employee;
+			if (selectedEmployee == null) return;
+			Close();
+
+			var employeeEditForm = new EmployeeEditForm (ProjectRepository){ SelectedItem = selectedEmployee };
+			employeeEditForm.EditedEmployeeSetText();
+			employeeEditForm.RefreshList();
+
+			employeeEditForm.ShowDialog();
+		}
 	}
 }

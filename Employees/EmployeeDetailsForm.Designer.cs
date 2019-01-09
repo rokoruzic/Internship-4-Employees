@@ -36,6 +36,7 @@
 			this.previousProjectsCount = new System.Windows.Forms.Label();
 			this.currentProjectsLabelCount = new System.Windows.Forms.Label();
 			this.plannedProjectsLabelCount = new System.Windows.Forms.Label();
+			this.employeeDetailsEditButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// ProjectsListBox
@@ -108,11 +109,22 @@
 			this.plannedProjectsLabelCount.Size = new System.Drawing.Size(0, 17);
 			this.plannedProjectsLabelCount.TabIndex = 7;
 			// 
+			// employeeDetailsEditButton
+			// 
+			this.employeeDetailsEditButton.Location = new System.Drawing.Point(413, 385);
+			this.employeeDetailsEditButton.Name = "employeeDetailsEditButton";
+			this.employeeDetailsEditButton.Size = new System.Drawing.Size(104, 23);
+			this.employeeDetailsEditButton.TabIndex = 8;
+			this.employeeDetailsEditButton.Text = "Edit";
+			this.employeeDetailsEditButton.UseVisualStyleBackColor = true;
+			this.employeeDetailsEditButton.Click += new System.EventHandler(this.EmployeeDetailsEditButtonClick);
+			// 
 			// EmployeeDetailsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.employeeDetailsEditButton);
 			this.Controls.Add(this.plannedProjectsLabelCount);
 			this.Controls.Add(this.currentProjectsLabelCount);
 			this.Controls.Add(this.previousProjectsCount);
@@ -138,5 +150,6 @@
 		private System.Windows.Forms.Label previousProjectsCount;
 		private System.Windows.Forms.Label currentProjectsLabelCount;
 		private System.Windows.Forms.Label plannedProjectsLabelCount;
+		private System.Windows.Forms.Button employeeDetailsEditButton;
 	}
 }

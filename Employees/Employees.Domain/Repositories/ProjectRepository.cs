@@ -16,10 +16,10 @@ namespace Employees.Domain.Repositories
 			
 			Projects = new List<Project>()
 			{
-				new Project("Projects Horde", Employees, new DateTime(2017, 12, 20),
+				new Project("Project Horde", new DateTime(2017, 12, 20),
 					new DateTime(2018, 10, 10)),
-				new Project("Projects Alliance", Employees, new DateTime(2017, 12, 20),
-				new DateTime(2018, 10, 10))
+				//new Project("Project Alliance", new DateTime(2017, 12, 20),
+				//new DateTime(2018, 10, 10))
 			};
 		}
 	}

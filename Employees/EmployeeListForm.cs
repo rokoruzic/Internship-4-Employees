@@ -18,19 +18,19 @@ namespace Employees
 		public EmployeeRepository EmployeeRepository;
 		public ProjectRepository ProjectRepository;
 		
-		public EmployeeListForm()
+		public EmployeeListForm(EmployeeRepository employeeRepository ,ProjectRepository projectRepository)
 		{
 			InitializeComponent();
-			EmployeeRepository= new EmployeeRepository();
-			ProjectRepository= new ProjectRepository();
+			EmployeeRepository = employeeRepository;
+			ProjectRepository = projectRepository;
 			foreach (var employee in EmployeeRepository.Employees)
 			{
 				employeesListBox.Items.Add(employee);
 
 			}
-			foreach (var VARIABLE in ProjectRepository.Projects)
+			foreach (var project in ProjectRepository.Projects)
 			{
-				employeesListBox.Items.Add(VARIABLE);
+				employeesListBox.Items.Add(project);
 			}
 			
 		}
@@ -40,7 +40,7 @@ namespace Employees
 
 			var selectedEmployee = employeesListBox.SelectedItem as Employee;
 			if (selectedEmployee == null) return;
-			var employeeEditForm = new EmployeeEditForm {SelectedItem = selectedEmployee};
+			var employeeEditForm = new EmployeeEditForm(ProjectRepository) {SelectedItem = selectedEmployee};
 
 			employeeEditForm.EditedEmployeeSetText();
 			employeeEditForm.RefreshList();

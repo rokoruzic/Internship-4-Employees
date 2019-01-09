@@ -9,15 +9,16 @@ namespace ClassLibrary1.Models
 {
 	public class Project {
 		public string Name {get; set;}
-		//public Tuple<List<Employee>, List<int>> EmployeesWorkHoursTuple{ get; set; }
+		public List<EmployeeWithWorkHours> EmployeeWithWorkHours { get; set; }
 		public DateTime StartDate { get; set;}
 		public DateTime EndDate { get; set; }
-		public Project(string name, List<Employee> employees,
+		public Project(string name,
 			DateTime startDate, DateTime endDate)
 		{
 			Name = name;
 			StartDate = startDate;
 			EndDate = endDate;
+			EmployeeWithWorkHours=new List<EmployeeWithWorkHours>();
 		}
 
 		public override string ToString()

@@ -50,6 +50,7 @@
 			this.ProjectsDetailsButton.TabIndex = 2;
 			this.ProjectsDetailsButton.Text = "Projects";
 			this.ProjectsDetailsButton.UseVisualStyleBackColor = true;
+			this.ProjectsDetailsButton.Click += new System.EventHandler(this.ProjectsDetailsButtonClick);
 			// 
 			// Menu
 			// 
