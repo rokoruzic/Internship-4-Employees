@@ -45,7 +45,7 @@ namespace Employees
 
 		private void ProjectsDetailsButtonClick(object sender, EventArgs e)
 		{
-			var projectsListForm = new ProjectListForm(ProjectRepository);
+			var projectsListForm = new ProjectListForm(ProjectRepository,EmployeeRepository);
 			projectsListForm.ShowDialog();
 		}
 	}

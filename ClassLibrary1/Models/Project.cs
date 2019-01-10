@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +26,18 @@ namespace ClassLibrary1.Models
 		{
 			return $"{Name}";
 		}
+
+		public bool IsEndDateAfterStartDate()
+		{
+			return EndDate > StartDate;
+		}
+
+		public  bool IsEmployeeInProject()
+		{
+			return EmployeeWithWorkHours.Count > 0;
+		}
+
+
 
 		
 	}

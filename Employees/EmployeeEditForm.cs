@@ -47,7 +47,7 @@ namespace Employees
 				isFound = false;
 				foreach (var projectWithWorkHours in SelectedItem.ProjectWithWorkHours)
 				{
-					if (projectWithWorkHours.ProjectName() == project.Name)
+					if (projectWithWorkHours.Project.Name == project.Name)
 						isFound = true;
 				}
 				if (!isFound)
@@ -66,6 +66,7 @@ namespace Employees
 			SelectedItem.FirstName = employeeEditFirstNameTextBox.Text;
 			SelectedItem.LastName = employeeLastNameEditTextBox.Text;
 			SelectedItem.DateOfBirth = employeeEditDateTimePicker.Value;
+		
 			SelectedItem.WorkPosition = (WorkPosition) employeeEditWorkPositionComboBox.SelectedItem;
 			SelectedItem.ProjectWithWorkHours=new List<ProjectWithWorkHours>();
 
@@ -91,14 +92,10 @@ namespace Employees
 				employee1.Employee = SelectedItem;
 				employee1.WorkHours = projectWithWorkHours.WorkHours;
 				projectWithWorkHours.Project.EmployeeWithWorkHours.Add(employee1);
-
-
-
-
 			}
-
-
-
+			if(!ProjectRepository.isTwoEmployees())
+				return;
+			
 			Close();
 		}
 
@@ -112,18 +109,20 @@ namespace Employees
 			RemoveProjectFromEmployeeComboBox.Items.Add(projectWithWorkHours);
 			foreach (var project in ProjectRepository.Projects)
 			{
-				if (projectWithWorkHours.Project.Name ==project.Name)
+				if (projectWithWorkHours.Project.Name == project.Name)
 					addProjectToEmployeeComboBox.Items.Remove(project);
 			}
+			addProjectToEmployeeComboBox.ResetText();
 		}
 
 		private void EmployeeDeleteProjectClick(object sender, EventArgs e)
 		{
-			var temp = RemoveProjectFromEmployeeComboBox.SelectedItem;
-			var temp2 = temp as ProjectWithWorkHours;
-			RemoveProjectFromEmployeeComboBox.Items.Remove(temp);
-			addProjectToEmployeeComboBox.Items.Add(temp2.Project);
+			var tempProject = RemoveProjectFromEmployeeComboBox.SelectedItem;
+			var tempProject2 = tempProject as ProjectWithWorkHours;
+			RemoveProjectFromEmployeeComboBox.Items.Remove(tempProject);
+			addProjectToEmployeeComboBox.Items.Add(tempProject2.Project);
 			RemoveProjectFromEmployeeComboBox.ResetText();
+			addProjectToEmployeeComboBox.ResetText();
 
 		}
 	}

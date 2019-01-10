@@ -18,7 +18,7 @@ namespace ClassLibrary1.Models
 
 		public  string ProjectName()
 		{
-			return Project.Name;
+			return $"{Project.Name} {WorkHours}";
 		}
 		
 	}

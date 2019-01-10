@@ -28,10 +28,7 @@ namespace Employees
 				employeesListBox.Items.Add(employee);
 
 			}
-			foreach (var project in ProjectRepository.Projects)
-			{
-				employeesListBox.Items.Add(project);
-			}
+			
 			
 		}
 
@@ -62,14 +59,17 @@ namespace Employees
 		{
 			var selectedEmployee = employeesListBox.SelectedItem as Employee;
 			if (selectedEmployee == null) return;
+			if (!ProjectRepository.isTwoEmployees())
+				return;
 			EmployeeRepository.Employees.Remove(selectedEmployee);
+			ProjectRepository.Employees.Remove(selectedEmployee);
 			AddRefreshList();
 
 		}
 
 		private void EmployeeAddNewClick(object sender, EventArgs e)
 		{
-			var employeeAddNewForm = new EmployeeAddNewForm(EmployeeRepository);
+			var employeeAddNewForm = new EmployeeAddNewForm(EmployeeRepository, ProjectRepository);
 			employeeAddNewForm.ShowDialog();
 			AddRefreshList();
 

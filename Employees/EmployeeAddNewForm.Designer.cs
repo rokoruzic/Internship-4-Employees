@@ -35,47 +35,48 @@
 			this.workPositionAddNewComboBox = new System.Windows.Forms.ComboBox();
 			this.employeeSaveAddNewButton = new System.Windows.Forms.Button();
 			this.ErrorDialog = new System.Windows.Forms.OpenFileDialog();
+			this.projectAddNewComboBox = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// firstNameAddNewTextbox
 			// 
-			this.firstNameAddNewTextbox.Location = new System.Drawing.Point(277, 51);
+			this.firstNameAddNewTextbox.Location = new System.Drawing.Point(83, 45);
 			this.firstNameAddNewTextbox.Name = "firstNameAddNewTextbox";
 			this.firstNameAddNewTextbox.Size = new System.Drawing.Size(195, 22);
 			this.firstNameAddNewTextbox.TabIndex = 0;
 			// 
 			// lastNameAddNewTextbox
 			// 
-			this.lastNameAddNewTextbox.Location = new System.Drawing.Point(277, 107);
+			this.lastNameAddNewTextbox.Location = new System.Drawing.Point(83, 96);
 			this.lastNameAddNewTextbox.Name = "lastNameAddNewTextbox";
 			this.lastNameAddNewTextbox.Size = new System.Drawing.Size(195, 22);
 			this.lastNameAddNewTextbox.TabIndex = 1;
 			// 
 			// oibAddNewTextbox
 			// 
-			this.oibAddNewTextbox.Location = new System.Drawing.Point(277, 167);
+			this.oibAddNewTextbox.Location = new System.Drawing.Point(83, 165);
 			this.oibAddNewTextbox.Name = "oibAddNewTextbox";
 			this.oibAddNewTextbox.Size = new System.Drawing.Size(195, 22);
 			this.oibAddNewTextbox.TabIndex = 2;
 			// 
 			// dateOfBirthAddNewDateTimePicker
 			// 
-			this.dateOfBirthAddNewDateTimePicker.Location = new System.Drawing.Point(172, 233);
+			this.dateOfBirthAddNewDateTimePicker.Location = new System.Drawing.Point(28, 237);
 			this.dateOfBirthAddNewDateTimePicker.Name = "dateOfBirthAddNewDateTimePicker";
-			this.dateOfBirthAddNewDateTimePicker.Size = new System.Drawing.Size(444, 22);
+			this.dateOfBirthAddNewDateTimePicker.Size = new System.Drawing.Size(302, 22);
 			this.dateOfBirthAddNewDateTimePicker.TabIndex = 5;
 			// 
 			// workPositionAddNewComboBox
 			// 
 			this.workPositionAddNewComboBox.FormattingEnabled = true;
-			this.workPositionAddNewComboBox.Location = new System.Drawing.Point(277, 311);
+			this.workPositionAddNewComboBox.Location = new System.Drawing.Point(83, 307);
 			this.workPositionAddNewComboBox.Name = "workPositionAddNewComboBox";
 			this.workPositionAddNewComboBox.Size = new System.Drawing.Size(195, 24);
 			this.workPositionAddNewComboBox.TabIndex = 6;
 			// 
 			// employeeSaveAddNewButton
 			// 
-			this.employeeSaveAddNewButton.Location = new System.Drawing.Point(632, 392);
+			this.employeeSaveAddNewButton.Location = new System.Drawing.Point(389, 395);
 			this.employeeSaveAddNewButton.Name = "employeeSaveAddNewButton";
 			this.employeeSaveAddNewButton.Size = new System.Drawing.Size(75, 23);
 			this.employeeSaveAddNewButton.TabIndex = 7;
@@ -87,11 +88,20 @@
 			// 
 			this.ErrorDialog.FileName = "EmptyAddEmployeeErrorForm";
 			// 
+			// projectAddNewComboBox
+			// 
+			this.projectAddNewComboBox.FormattingEnabled = true;
+			this.projectAddNewComboBox.Location = new System.Drawing.Point(500, 45);
+			this.projectAddNewComboBox.Name = "projectAddNewComboBox";
+			this.projectAddNewComboBox.Size = new System.Drawing.Size(212, 24);
+			this.projectAddNewComboBox.TabIndex = 8;
+			// 
 			// EmployeeAddNewForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.projectAddNewComboBox);
 			this.Controls.Add(this.employeeSaveAddNewButton);
 			this.Controls.Add(this.workPositionAddNewComboBox);
 			this.Controls.Add(this.dateOfBirthAddNewDateTimePicker);
@@ -114,5 +124,6 @@
 		private System.Windows.Forms.ComboBox workPositionAddNewComboBox;
 		private System.Windows.Forms.Button employeeSaveAddNewButton;
 		private System.Windows.Forms.OpenFileDialog ErrorDialog;
+		private System.Windows.Forms.ComboBox projectAddNewComboBox;
 	}
 }

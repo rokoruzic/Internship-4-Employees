@@ -46,7 +46,7 @@ namespace ClassLibrary1.Models
 		}
 		public override string ToString()
 		{
-			return $"{FirstName} {LastName} {Oib} {DateOfBirth} {WorkPosition} ";
+			return $"{FirstName} {LastName} ";
 		}
 
 		public string PrintFullName()
@@ -102,6 +102,8 @@ namespace ClassLibrary1.Models
 
 			return counter;
 		}
+
+		
 
 	}
 }

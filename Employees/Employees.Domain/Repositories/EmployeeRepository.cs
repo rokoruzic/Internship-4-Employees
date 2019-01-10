@@ -36,5 +36,11 @@ namespace Employees.Domain.Repositories
 			return true;
 		}
 
+		public bool isTwoEmployees()
+		{
+			return Employees.Count > 1;
+
+		}
+
 	}
 }

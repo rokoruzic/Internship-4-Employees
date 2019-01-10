@@ -51,7 +51,7 @@
 			this.projectEditButton.TabIndex = 1;
 			this.projectEditButton.Text = "Edit";
 			this.projectEditButton.UseVisualStyleBackColor = true;
-			this.projectEditButton.Click += new System.EventHandler(this.projectEditButtonClick);
+			this.projectEditButton.Click += new System.EventHandler(this.ProjectEditButtonClick);
 			// 
 			// projectDeleteButton
 			// 
@@ -61,6 +61,7 @@
 			this.projectDeleteButton.TabIndex = 2;
 			this.projectDeleteButton.Text = "Delete";
 			this.projectDeleteButton.UseVisualStyleBackColor = true;
+			this.projectDeleteButton.Click += new System.EventHandler(this.ProjectDeleteClick);
 			// 
 			// projectDetailsButton
 			// 

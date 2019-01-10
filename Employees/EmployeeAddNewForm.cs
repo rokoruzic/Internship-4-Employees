@@ -15,12 +15,14 @@ namespace Employees
 {
 	public partial class EmployeeAddNewForm : Form
 	{
-		public Employee NewEmployee { get; set; }
-		private EmployeeRepository employeeRepository1;
-		public EmployeeAddNewForm(EmployeeRepository employeeRepository)
+		public EmployeeRepository EmployeeRepository;
+		public ProjectRepository ProjectRepository;
+		public EmployeeAddNewForm(EmployeeRepository employeeRepository, ProjectRepository projectRepository)
 		{
 			InitializeComponent();
-			employeeRepository1 = employeeRepository;
+			EmployeeRepository = employeeRepository;
+			ProjectRepository = projectRepository;
+
 			foreach (var workPosition in (WorkPosition[])Enum.GetValues(typeof(WorkPosition)))
 			{
 				workPositionAddNewComboBox.Items.Add(workPosition);
@@ -32,6 +34,11 @@ namespace Employees
 				var EmptyAddEmployeeErrorForm = new EmptyAddEmployeeErrorForm();
 				EmptyAddEmployeeErrorForm.ShowDialog();
 				ErrorDialog.ShowDialog();
+			}
+
+			foreach (var project in ProjectRepository.Projects)
+			{
+				projectAddNewComboBox.Items.Add(project);
 			}
 
 		}
@@ -48,12 +55,12 @@ namespace Employees
 			}
 			else
 			{
-				var Employee = new Employee(firstNameAddNewTextbox.Text, lastNameAddNewTextbox.Text,
+				var employee = new Employee(firstNameAddNewTextbox.Text, lastNameAddNewTextbox.Text,
 					oibAddNewTextbox.Text, (WorkPosition) workPositionAddNewComboBox.SelectedItem,
 					dateOfBirthAddNewDateTimePicker.Value);
-				if (employeeRepository1.CreateEmployee(Employee))
+				if (EmployeeRepository.CreateEmployee(employee))
 				{
-					employeeRepository1.Employees.Add(Employee);
+					EmployeeRepository.Employees.Add(employee);
 				}
 			}
 			Close();
