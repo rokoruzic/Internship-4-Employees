@@ -60,5 +60,21 @@ namespace Employees
 			
 			Close();
 		}
+
+		private void AddNewProjectClick(object sender, EventArgs e)
+		{
+			
+			var addNewProject = new ProjectAddNewForm(ProjectRepository, EmployeeRepository);
+			addNewProject.AddRefreshList();
+			addNewProject.ShowDialog();
+		}
+
+		private void ProjectListViewDetailsClick(object sender, EventArgs e)
+		{
+			var selectedProject = projectsListBox.SelectedItem as Project;
+			var projectDetailsForm = new ProjectDetailsForm(ProjectRepository){SelectedProject =selectedProject };
+			projectDetailsForm.AddRefreshList();
+			projectDetailsForm.ShowDialog();
+		}
 	}
 }

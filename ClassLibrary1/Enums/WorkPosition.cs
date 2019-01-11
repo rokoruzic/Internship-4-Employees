@@ -11,7 +11,6 @@ namespace ClassLibrary1.Enums
 		Secretary = 1,
 		Developer,
 		Accountant,
-		Designer,
 		WebDeveloper,
 		Manager,
 	}

@@ -70,8 +70,9 @@ namespace Employees
 		private void EmployeeAddNewClick(object sender, EventArgs e)
 		{
 			var employeeAddNewForm = new EmployeeAddNewForm(EmployeeRepository, ProjectRepository);
+			employeeAddNewForm.AddRefreshList();
 			employeeAddNewForm.ShowDialog();
-			AddRefreshList();
+			
 
 
 

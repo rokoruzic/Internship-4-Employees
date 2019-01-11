@@ -36,6 +36,9 @@
 			this.employeeSaveAddNewButton = new System.Windows.Forms.Button();
 			this.ErrorDialog = new System.Windows.Forms.OpenFileDialog();
 			this.projectAddNewComboBox = new System.Windows.Forms.ComboBox();
+			this.addWorkHoursToProjectToNewEmployeeNumUpDown = new System.Windows.Forms.NumericUpDown();
+			this.addProjectToNewEmployeeButton = new System.Windows.Forms.Button();
+			((System.ComponentModel.ISupportInitialize)(this.addWorkHoursToProjectToNewEmployeeNumUpDown)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// firstNameAddNewTextbox
@@ -96,11 +99,30 @@
 			this.projectAddNewComboBox.Size = new System.Drawing.Size(212, 24);
 			this.projectAddNewComboBox.TabIndex = 8;
 			// 
+			// addWorkHoursToProjectToNewEmployeeNumUpDown
+			// 
+			this.addWorkHoursToProjectToNewEmployeeNumUpDown.Location = new System.Drawing.Point(500, 110);
+			this.addWorkHoursToProjectToNewEmployeeNumUpDown.Name = "addWorkHoursToProjectToNewEmployeeNumUpDown";
+			this.addWorkHoursToProjectToNewEmployeeNumUpDown.Size = new System.Drawing.Size(78, 22);
+			this.addWorkHoursToProjectToNewEmployeeNumUpDown.TabIndex = 9;
+			// 
+			// addProjectToNewEmployeeButton
+			// 
+			this.addProjectToNewEmployeeButton.Location = new System.Drawing.Point(637, 110);
+			this.addProjectToNewEmployeeButton.Name = "addProjectToNewEmployeeButton";
+			this.addProjectToNewEmployeeButton.Size = new System.Drawing.Size(75, 23);
+			this.addProjectToNewEmployeeButton.TabIndex = 10;
+			this.addProjectToNewEmployeeButton.Text = "Add";
+			this.addProjectToNewEmployeeButton.UseVisualStyleBackColor = true;
+			this.addProjectToNewEmployeeButton.Click += new System.EventHandler(this.AddProjectToNewEmployeeClick);
+			// 
 			// EmployeeAddNewForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.addProjectToNewEmployeeButton);
+			this.Controls.Add(this.addWorkHoursToProjectToNewEmployeeNumUpDown);
 			this.Controls.Add(this.projectAddNewComboBox);
 			this.Controls.Add(this.employeeSaveAddNewButton);
 			this.Controls.Add(this.workPositionAddNewComboBox);
@@ -110,6 +132,7 @@
 			this.Controls.Add(this.firstNameAddNewTextbox);
 			this.Name = "EmployeeAddNewForm";
 			this.Text = "EmployeeAddNewForm";
+			((System.ComponentModel.ISupportInitialize)(this.addWorkHoursToProjectToNewEmployeeNumUpDown)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -125,5 +148,7 @@
 		private System.Windows.Forms.Button employeeSaveAddNewButton;
 		private System.Windows.Forms.OpenFileDialog ErrorDialog;
 		private System.Windows.Forms.ComboBox projectAddNewComboBox;
+		private System.Windows.Forms.NumericUpDown addWorkHoursToProjectToNewEmployeeNumUpDown;
+		private System.Windows.Forms.Button addProjectToNewEmployeeButton;
 	}
 }

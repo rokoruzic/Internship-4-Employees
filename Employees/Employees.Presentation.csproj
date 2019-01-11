@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProjectAddNewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectAddNewForm.Designer.cs">
+      <DependentUpon>ProjectAddNewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeAddNewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,12 @@
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectDetailsForm.Designer.cs">
+      <DependentUpon>ProjectDetailsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectAddNewForm.resx">
+      <DependentUpon>ProjectAddNewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectEditForm.resx">
       <DependentUpon>ProjectEditForm.cs</DependentUpon>

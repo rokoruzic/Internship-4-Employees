@@ -32,6 +32,7 @@
 			this.projectEditButton = new System.Windows.Forms.Button();
 			this.projectDeleteButton = new System.Windows.Forms.Button();
 			this.projectDetailsButton = new System.Windows.Forms.Button();
+			this.addNewProjectButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// projectsListBox
@@ -65,18 +66,30 @@
 			// 
 			// projectDetailsButton
 			// 
-			this.projectDetailsButton.Location = new System.Drawing.Point(672, 235);
+			this.projectDetailsButton.Location = new System.Drawing.Point(672, 247);
 			this.projectDetailsButton.Name = "projectDetailsButton";
 			this.projectDetailsButton.Size = new System.Drawing.Size(75, 23);
 			this.projectDetailsButton.TabIndex = 3;
 			this.projectDetailsButton.Text = "View";
 			this.projectDetailsButton.UseVisualStyleBackColor = true;
+			this.projectDetailsButton.Click += new System.EventHandler(this.ProjectListViewDetailsClick);
+			// 
+			// addNewProjectButton
+			// 
+			this.addNewProjectButton.Location = new System.Drawing.Point(672, 208);
+			this.addNewProjectButton.Name = "addNewProjectButton";
+			this.addNewProjectButton.Size = new System.Drawing.Size(75, 23);
+			this.addNewProjectButton.TabIndex = 4;
+			this.addNewProjectButton.Text = "Add";
+			this.addNewProjectButton.UseVisualStyleBackColor = true;
+			this.addNewProjectButton.Click += new System.EventHandler(this.AddNewProjectClick);
 			// 
 			// ProjectListForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.addNewProjectButton);
 			this.Controls.Add(this.projectDetailsButton);
 			this.Controls.Add(this.projectDeleteButton);
 			this.Controls.Add(this.projectEditButton);
@@ -93,5 +106,6 @@
 		private System.Windows.Forms.Button projectEditButton;
 		private System.Windows.Forms.Button projectDeleteButton;
 		private System.Windows.Forms.Button projectDetailsButton;
+		private System.Windows.Forms.Button addNewProjectButton;
 	}
 }
