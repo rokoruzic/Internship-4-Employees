@@ -33,6 +33,12 @@
 			this.workPositionSecretaryListBox = new System.Windows.Forms.ListBox();
 			this.workPositionWebDeveloperListBox = new System.Windows.Forms.ListBox();
 			this.workPositionAccountantListBox = new System.Windows.Forms.ListBox();
+			this.projectName = new System.Windows.Forms.TextBox();
+			this.managerTextBox = new System.Windows.Forms.TextBox();
+			this.secretaryTextBox = new System.Windows.Forms.TextBox();
+			this.accountantTextBox = new System.Windows.Forms.TextBox();
+			this.developerTextBox = new System.Windows.Forms.TextBox();
+			this.webDeveloperTextBox = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// workPositionManagerListBox
@@ -80,11 +86,65 @@
 			this.workPositionAccountantListBox.Size = new System.Drawing.Size(166, 132);
 			this.workPositionAccountantListBox.TabIndex = 4;
 			// 
+			// projectName
+			// 
+			this.projectName.Location = new System.Drawing.Point(33, 13);
+			this.projectName.Name = "projectName";
+			this.projectName.ReadOnly = true;
+			this.projectName.Size = new System.Drawing.Size(206, 22);
+			this.projectName.TabIndex = 5;
+			// 
+			// managerTextBox
+			// 
+			this.managerTextBox.Location = new System.Drawing.Point(33, 96);
+			this.managerTextBox.Name = "managerTextBox";
+			this.managerTextBox.ReadOnly = true;
+			this.managerTextBox.Size = new System.Drawing.Size(206, 22);
+			this.managerTextBox.TabIndex = 6;
+			// 
+			// secretaryTextBox
+			// 
+			this.secretaryTextBox.Location = new System.Drawing.Point(338, 96);
+			this.secretaryTextBox.Name = "secretaryTextBox";
+			this.secretaryTextBox.ReadOnly = true;
+			this.secretaryTextBox.Size = new System.Drawing.Size(191, 22);
+			this.secretaryTextBox.TabIndex = 7;
+			// 
+			// accountantTextBox
+			// 
+			this.accountantTextBox.Location = new System.Drawing.Point(597, 96);
+			this.accountantTextBox.Name = "accountantTextBox";
+			this.accountantTextBox.ReadOnly = true;
+			this.accountantTextBox.Size = new System.Drawing.Size(166, 22);
+			this.accountantTextBox.TabIndex = 8;
+			// 
+			// developerTextBox
+			// 
+			this.developerTextBox.Location = new System.Drawing.Point(33, 271);
+			this.developerTextBox.Name = "developerTextBox";
+			this.developerTextBox.ReadOnly = true;
+			this.developerTextBox.Size = new System.Drawing.Size(206, 22);
+			this.developerTextBox.TabIndex = 9;
+			// 
+			// webDeveloperTextBox
+			// 
+			this.webDeveloperTextBox.Location = new System.Drawing.Point(338, 270);
+			this.webDeveloperTextBox.Name = "webDeveloperTextBox";
+			this.webDeveloperTextBox.ReadOnly = true;
+			this.webDeveloperTextBox.Size = new System.Drawing.Size(185, 22);
+			this.webDeveloperTextBox.TabIndex = 10;
+			// 
 			// ProjectDetailsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.webDeveloperTextBox);
+			this.Controls.Add(this.developerTextBox);
+			this.Controls.Add(this.accountantTextBox);
+			this.Controls.Add(this.secretaryTextBox);
+			this.Controls.Add(this.managerTextBox);
+			this.Controls.Add(this.projectName);
 			this.Controls.Add(this.workPositionAccountantListBox);
 			this.Controls.Add(this.workPositionWebDeveloperListBox);
 			this.Controls.Add(this.workPositionSecretaryListBox);
@@ -93,6 +153,7 @@
 			this.Name = "ProjectDetailsForm";
 			this.Text = "ProjectDetailsForm";
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -103,5 +164,11 @@
 		private System.Windows.Forms.ListBox workPositionSecretaryListBox;
 		private System.Windows.Forms.ListBox workPositionWebDeveloperListBox;
 		private System.Windows.Forms.ListBox workPositionAccountantListBox;
+		private System.Windows.Forms.TextBox projectName;
+		private System.Windows.Forms.TextBox managerTextBox;
+		private System.Windows.Forms.TextBox secretaryTextBox;
+		private System.Windows.Forms.TextBox accountantTextBox;
+		private System.Windows.Forms.TextBox developerTextBox;
+		private System.Windows.Forms.TextBox webDeveloperTextBox;
 	}
 }

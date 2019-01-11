@@ -129,6 +129,9 @@
     <EmbeddedResource Include="ProjectAddNewForm.resx">
       <DependentUpon>ProjectAddNewForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectDetailsForm.resx">
+      <DependentUpon>ProjectDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectEditForm.resx">
       <DependentUpon>ProjectEditForm.cs</DependentUpon>
     </EmbeddedResource>

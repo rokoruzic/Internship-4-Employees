@@ -21,15 +21,20 @@ namespace Employees
 		{
 			InitializeComponent();
 			ProjectRepository = projectRepository;
+			
 		}
 
 		public void AddRefreshList()
 		{
-			foreach (var employeeWithWorkHours in SelectedProject.EmployeeWithWorkHours)
+			var list = SelectedProject.EmployeeWithWorkHours.ToList();
+			foreach (var employeeWithWorkHours in list)
 			{
-				
+
 				if (employeeWithWorkHours.Employee.WorkPosition == WorkPosition.Developer)
+				{
 					workPositionDeveloperListBox.Items.Add(employeeWithWorkHours);
+					
+				}
 				else if (employeeWithWorkHours.Employee.WorkPosition == WorkPosition.WebDeveloper)
 					workPositionWebDeveloperListBox.Items.Add(employeeWithWorkHours);
 				else if (employeeWithWorkHours.Employee.WorkPosition == WorkPosition.Manager)
@@ -39,6 +44,51 @@ namespace Employees
 				else workPositionSecretaryListBox.Items.Add(employeeWithWorkHours);
 				
 			}
+		}
+
+		public void SetText()
+		{
+			projectName.Text = SelectedProject.Name;
+			var workPositionDeveloperCount = workPositionDeveloperListBox.Items.Count.ToString();
+			var workPositionWebDeveloperCount = workPositionWebDeveloperListBox.Items.Count.ToString();
+			var workPositionAccountantCount = workPositionAccountantListBox.Items.Count.ToString();
+			var workPositionManagerCount = workPositionManagerListBox.Items.Count.ToString();
+			var workPositionSecretaryCount = workPositionSecretaryListBox.Items.Count.ToString();
+			if (workPositionDeveloperListBox.Items.Count == 0)
+			{
+				workPositionDeveloperListBox.Hide();
+				developerTextBox.Hide();
+			}
+
+			if (workPositionWebDeveloperListBox.Items.Count == 0)
+			{
+				workPositionWebDeveloperListBox.Hide();
+				webDeveloperTextBox.Hide();
+			}
+
+			if (workPositionAccountantListBox.Items.Count == 0)
+			{
+				workPositionAccountantListBox.Hide();
+				accountantTextBox.Hide();
+			}
+
+			if (workPositionSecretaryListBox.Items.Count == 0)
+			{
+				workPositionSecretaryListBox.Hide();
+				secretaryTextBox.Hide();
+			}
+
+			if (workPositionManagerListBox.Items.Count == 0)
+			{
+				workPositionManagerListBox.Hide();
+				managerTextBox.Hide();
+			}
+			accountantTextBox.Text = $"Accountant({workPositionAccountantCount})";
+			managerTextBox.Text = $"Manager({workPositionManagerCount})";
+			developerTextBox.Text = $"Developer({workPositionDeveloperCount})";
+			webDeveloperTextBox.Text = $"Web Developer({workPositionWebDeveloperCount})";
+			secretaryTextBox.Text = $"Secretary({workPositionSecretaryCount})";
+
 		}
 	}
 }

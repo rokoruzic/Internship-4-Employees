@@ -113,8 +113,15 @@ namespace Employees
 			var employeeWithWorkHours = new EmployeeWithWorkHours();
 			employeeWithWorkHours.WorkHours = (int)employeeAddWorkHoursNumUpDown.Value;
 			employeeWithWorkHours.Employee = (Employee)addEmployeeToProjectComboBox.SelectedItem;
+
 			removeEmployeeFromProjectComboBox.Items.Add(employeeWithWorkHours);
+			foreach (var employee in EmployeeRepository.Employees)
+			{
+				if (employeeWithWorkHours.Employee.Oib == employee.Oib)
+					addEmployeeToProjectComboBox.Items.Remove(employee);
+			}
 			addEmployeeToProjectComboBox.ResetText();
+
 		}
 	}
 }

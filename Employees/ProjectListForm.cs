@@ -74,6 +74,7 @@ namespace Employees
 			var selectedProject = projectsListBox.SelectedItem as Project;
 			var projectDetailsForm = new ProjectDetailsForm(ProjectRepository){SelectedProject =selectedProject };
 			projectDetailsForm.AddRefreshList();
+			projectDetailsForm.SetText();
 			projectDetailsForm.ShowDialog();
 		}
 	}
