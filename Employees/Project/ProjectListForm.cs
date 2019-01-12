@@ -17,14 +17,15 @@ namespace Employees
 	{
 		public ProjectRepository ProjectRepository { get; set; }
 		public EmployeeRepository EmployeeRepository { get; set; }
-		public ProjectListForm(ProjectRepository projectRepository,EmployeeRepository employeeRepository)
+
+		public ProjectListForm(ProjectRepository projectRepository, EmployeeRepository employeeRepository)
 		{
 			InitializeComponent();
-			ProjectRepository= projectRepository;
+			ProjectRepository = projectRepository;
 			EmployeeRepository = employeeRepository;
-
 			AddRefreshList();
 		}
+
 		public void AddRefreshList()
 		{
 			projectsListBox.Items.Clear();
@@ -33,6 +34,7 @@ namespace Employees
 				projectsListBox.Items.Add(project);
 			}
 		}
+
 		private void ProjectEditButtonClick(object sender, EventArgs e)
 		{
 			var selectedProject = projectsListBox.SelectedItem as Project;
@@ -42,12 +44,13 @@ namespace Employees
 				errorForm.ShowDialog();
 				return;
 			}
-			var projectEditForm = new ProjectEditForm(EmployeeRepository,ProjectRepository) { SelectedProject = selectedProject };
+
+			var projectEditForm = new ProjectEditForm(EmployeeRepository, ProjectRepository)
+				{SelectedProject = selectedProject};
 			projectEditForm.SetText();
 			projectEditForm.RefreshList();
-			AddRefreshList();
 			projectEditForm.ShowDialog();
-
+			AddRefreshList();
 		}
 
 		private void ProjectDeleteClick(object sender, EventArgs e)
@@ -70,7 +73,6 @@ namespace Employees
 				{
 					employee.ProjectWithWorkHours.Remove(project);
 				}
-
 			}
 
 			AddRefreshList();
@@ -78,11 +80,10 @@ namespace Employees
 
 		private void AddNewProjectClick(object sender, EventArgs e)
 		{
-			
 			var addNewProject = new ProjectAddNewForm(ProjectRepository, EmployeeRepository);
 			addNewProject.AddRefreshList();
-			AddRefreshList();
 			addNewProject.ShowDialog();
+			AddRefreshList();
 		}
 
 		private void ProjectListViewDetailsClick(object sender, EventArgs e)
@@ -94,7 +95,9 @@ namespace Employees
 				errorForm.ShowDialog();
 				return;
 			}
-			var projectDetailsForm = new ProjectDetailsForm(ProjectRepository,EmployeeRepository){SelectedProject =selectedProject };
+
+			var projectDetailsForm = new ProjectDetailsForm(ProjectRepository, EmployeeRepository)
+				{SelectedProject = selectedProject};
 			projectDetailsForm.AddRefreshList();
 			projectDetailsForm.SetText();
 			projectDetailsForm.ShowDialog();

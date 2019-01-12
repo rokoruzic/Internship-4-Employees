@@ -13,6 +13,7 @@ namespace ClassLibrary1.Models
 	{
 		public List<ProjectWithWorkHours> ProjectWithWorkHours { get; set; }
 		private string _firstName;
+
 		public string FirstName
 		{
 			get { return _firstName; }
@@ -20,31 +21,34 @@ namespace ClassLibrary1.Models
 		}
 
 		private string _lastName { get; set; }
+
 		public string LastName
 		{
 			get { return _lastName; }
 			set { _lastName = value.CapitalizeFirstLetterAndRemoveMultipleWhiteSpaces(); }
 		}
+
 		private string _oib { get; set; }
+
 		public string Oib
 		{
 			get { return _oib; }
 			set { _oib = value.RemoveAllWhiteSpaces(); }
 		}
+
 		public DateTime DateOfBirth { get; set; }
 		public WorkPosition WorkPosition { get; set; }
 
-		public Employee(string firstName, string lastName, string oib, WorkPosition workPosition
-		,DateTime dateOfBirth)
+		public Employee(string firstName, string lastName, string oib, WorkPosition workPosition, DateTime dateOfBirth)
 		{
 			FirstName = firstName;
 			LastName = lastName;
 			Oib = oib;
 			WorkPosition = workPosition;
 			DateOfBirth = dateOfBirth;
-			ProjectWithWorkHours=new List<ProjectWithWorkHours>();
-			
+			ProjectWithWorkHours = new List<ProjectWithWorkHours>();
 		}
+
 		public override string ToString()
 		{
 			return $"{FirstName} {LastName} ";
@@ -68,37 +72,34 @@ namespace ClassLibrary1.Models
 
 		public int NumberOfPlannedProjects()
 		{
-			int counter=0;
+			int counter = 0;
 			foreach (var startEndDateTime in ProjectWithWorkHours)
 			{
-				if (startEndDateTime.Project.StartDate > DateTime.Now)
-					counter++;
-			
+				if (startEndDateTime.Project.StartDate > DateTime.Now) counter++;
 			}
 
 			return counter;
 		}
+
 		public int NumberOfCurrentProjects()
 		{
 			int counter = 0;
 			foreach (var startEndDateTime in ProjectWithWorkHours)
 			{
-				if (startEndDateTime.Project.StartDate < DateTime.Now && startEndDateTime.Project.EndDate
-				    >DateTime.Now)
+				if (startEndDateTime.Project.StartDate < DateTime.Now &&
+				    startEndDateTime.Project.EndDate > DateTime.Now)
 					counter++;
-
 			}
 
 			return counter;
 		}
+
 		public int NumberOfPreviousProjects()
 		{
 			int counter = 0;
 			foreach (var startEndDateTime in ProjectWithWorkHours)
 			{
-				if (startEndDateTime.Project.EndDate < DateTime.Now)
-					counter++;
-
+				if (startEndDateTime.Project.EndDate < DateTime.Now) counter++;
 			}
 
 			return counter;
@@ -108,8 +109,5 @@ namespace ClassLibrary1.Models
 		{
 			return Regex.IsMatch(Oib, @"^[a-zA-Z]+$") && Oib.Length == 11;
 		}
-
-		
-
 	}
 }

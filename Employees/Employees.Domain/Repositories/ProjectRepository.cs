@@ -7,30 +7,28 @@ using ClassLibrary1.Models;
 
 namespace Employees.Domain.Repositories
 {
-	public class ProjectRepository:EmployeeRepository
+	public class ProjectRepository
 	{
 		public List<Project> Projects;
 
 		public ProjectRepository()
 		{
-			
 			Projects = new List<Project>()
 			{
-				new Project("Project Horde", new DateTime(2017, 12, 20),
-					new DateTime(2018, 10, 10)),
-				//new Project("Project Alliance", new DateTime(2017, 12, 20),
-				//new DateTime(2018, 10, 10))
+				new Project("project space oddity", new DateTime(2017, 12, 20), new DateTime(2018, 10, 10)),
+				
 			};
 		}
+
 		public bool CreateProject(Project project)
 		{
 			foreach (var project1 in Projects)
 			{
-				if (project.Name==project1.Name)
-					return false;
+				if (project.Name == project1.Name) return false;
 			}
 
 			return true;
 		}
+		
 	}
 }

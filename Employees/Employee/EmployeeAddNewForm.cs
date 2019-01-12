@@ -48,8 +48,7 @@ namespace Employees
 			if (string.IsNullOrEmpty(firstNameAddNewTextbox.Text) || string.IsNullOrEmpty(lastNameAddNewTextbox.Text) ||
 			    string.IsNullOrEmpty(oibAddNewTextbox.Text) || workPositionAddNewComboBox.SelectedItem == null)
 			{
-				var errorForm = new ErrorForm();
-				errorForm.EmptyEditOrNewFillOutBoxesText();
+				var errorForm = new ErrorForm("Please fill all boxes.");
 				errorForm.ShowDialog();
 				return;
 			}
@@ -59,16 +58,14 @@ namespace Employees
 			employee.ProjectWithWorkHours = ProjectWithWorkHoursList;
 			if (!EmployeeRepository.CreateEmployee(employee))
 			{
-				var errorForm = new ErrorForm();
-				errorForm.DuplicateOibText();
+				var errorForm = new ErrorForm("That oib is already added.");
 				errorForm.ShowDialog();
 				return;
 			}
 
 			if (!employee.IsOibValid())
 			{
-				var errorForm = new ErrorForm();
-				errorForm.OibNotValidText();
+				var errorForm = new ErrorForm("Oib contains letters and doesn't have 11 characters.");
 				errorForm.ShowDialog();
 				return;
 			}
@@ -96,16 +93,14 @@ namespace Employees
 		{
 			if (projectAddNewComboBox.SelectedItem == null)
 			{
-				var errorForm = new ErrorForm();
-				errorForm.NoProjectOrEmployeeSelectedText();
+				var errorForm = new ErrorForm("You need to select item before clicking add.");
 				errorForm.ShowDialog();
 				return;
 			}
 
 			if (addWorkHoursToProjectToNewEmployeeNumUpDown.Value == 0)
 			{
-				var errorForm = new ErrorForm();
-				errorForm.NoWorkHoursText();
+				var errorForm = new ErrorForm("Work hours can't be zero.");
 				errorForm.ShowDialog();
 				return;
 			}

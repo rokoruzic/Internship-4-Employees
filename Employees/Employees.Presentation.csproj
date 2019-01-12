@@ -52,90 +52,90 @@
     <Compile Include="Errors\ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjectAddNewForm.cs">
+    <Compile Include="Project\ProjectAddNewForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjectAddNewForm.Designer.cs">
+    <Compile Include="Project\ProjectAddNewForm.Designer.cs">
       <DependentUpon>ProjectAddNewForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeAddNewForm.cs">
+    <Compile Include="Employee\EmployeeAddNewForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmployeeAddNewForm.Designer.cs">
+    <Compile Include="Employee\EmployeeAddNewForm.Designer.cs">
       <DependentUpon>EmployeeAddNewForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeDetailsForm.cs">
+    <Compile Include="Employee\EmployeeDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmployeeDetailsForm.Designer.cs">
+    <Compile Include="Employee\EmployeeDetailsForm.Designer.cs">
       <DependentUpon>EmployeeDetailsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeEditForm.cs">
+    <Compile Include="Employee\EmployeeEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmployeeEditForm.Designer.cs">
+    <Compile Include="Employee\EmployeeEditForm.Designer.cs">
       <DependentUpon>EmployeeEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeListForm.cs">
+    <Compile Include="Employee\EmployeeListForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmployeeListForm.Designer.cs">
+    <Compile Include="Employee\EmployeeListForm.Designer.cs">
       <DependentUpon>EmployeeListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu.cs">
+    <Compile Include="Menu\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu.Designer.cs">
+    <Compile Include="Menu\Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProjectDetailsForm.cs">
+    <Compile Include="Project\ProjectDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjectDetailsForm.Designer.cs">
+    <Compile Include="Project\ProjectDetailsForm.Designer.cs">
       <DependentUpon>ProjectDetailsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjectEditForm.cs">
+    <Compile Include="Project\ProjectEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjectEditForm.Designer.cs">
+    <Compile Include="Project\ProjectEditForm.Designer.cs">
       <DependentUpon>ProjectEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjectListForm.cs">
+    <Compile Include="Project\ProjectListForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjectListForm.Designer.cs">
+    <Compile Include="Project\ProjectListForm.Designer.cs">
       <DependentUpon>ProjectListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="EmployeeAddNewForm.resx">
+    <EmbeddedResource Include="Employee\EmployeeAddNewForm.resx">
       <DependentUpon>EmployeeAddNewForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeeDetailsForm.resx">
+    <EmbeddedResource Include="Employee\EmployeeDetailsForm.resx">
       <DependentUpon>EmployeeDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeeEditForm.resx">
+    <EmbeddedResource Include="Employee\EmployeeEditForm.resx">
       <DependentUpon>EmployeeEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeeListForm.resx">
+    <EmbeddedResource Include="Employee\EmployeeListForm.resx">
       <DependentUpon>EmployeeListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Errors\ErrorForm.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu.resx">
+    <EmbeddedResource Include="Menu\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjectAddNewForm.resx">
+    <EmbeddedResource Include="Project\ProjectAddNewForm.resx">
       <DependentUpon>ProjectAddNewForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjectDetailsForm.resx">
+    <EmbeddedResource Include="Project\ProjectDetailsForm.resx">
       <DependentUpon>ProjectDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjectEditForm.resx">
+    <EmbeddedResource Include="Project\ProjectEditForm.resx">
       <DependentUpon>ProjectEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjectListForm.resx">
+    <EmbeddedResource Include="Project\ProjectListForm.resx">
       <DependentUpon>ProjectListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

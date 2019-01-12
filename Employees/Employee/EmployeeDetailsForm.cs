@@ -22,7 +22,7 @@ namespace Employees
 		{
 			InitializeComponent();
 			ProjectWithWorkHours = new ProjectWithWorkHours();
-			
+
 			ProjectRepository = new ProjectRepository();
 		}
 
@@ -32,8 +32,9 @@ namespace Employees
 			{
 				ProjectsListBox.Items.Add(project);
 			}
-			if (SelectedItem.WorkHoursCount()>40)
-				EmployeeTextBox.BackColor=Color.Red;
+
+			if (SelectedItem.WorkHoursCount() > 40)
+				EmployeeTextBox.BackColor = Color.Red;
 			else if (SelectedItem.WorkHoursCount() < 30)
 				EmployeeTextBox.BackColor = Color.Yellow;
 			else if (SelectedItem.WorkHoursCount() >= 30 && SelectedItem.WorkHoursCount() < 41)
@@ -45,19 +46,17 @@ namespace Employees
 			currentProjectsLabelCount.Text = numberOfCurrentProjectsCount;
 			plannedProjectsLabelCount.Text = numberOfPlannedProjectsCount;
 
-			
-			
 
 			EmployeeTextBox.Text = SelectedItem.PrintFullName();
 		}
 
 		private void EmployeeDetailsEditButtonClick(object sender, EventArgs e)
 		{
-			var selectedEmployee =SelectedItem as Employee;
+			var selectedEmployee = SelectedItem as Employee;
 			if (selectedEmployee == null) return;
 			Close();
 
-			var employeeEditForm = new EmployeeEditForm (ProjectRepository){ SelectedItem = selectedEmployee };
+			var employeeEditForm = new EmployeeEditForm(ProjectRepository) {SelectedItem = selectedEmployee};
 			employeeEditForm.EditedEmployeeSetText();
 			employeeEditForm.RefreshList();
 

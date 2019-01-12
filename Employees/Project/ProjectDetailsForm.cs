@@ -17,13 +17,13 @@ namespace Employees
 	{
 		public ProjectRepository ProjectRepository { get; set; }
 		public EmployeeRepository EmployeeRepository { get; set; }
-		public Project	SelectedProject { get; set; }
+		public Project SelectedProject { get; set; }
+
 		public ProjectDetailsForm(ProjectRepository projectRepository, EmployeeRepository employeeRepository)
 		{
 			InitializeComponent();
 			ProjectRepository = projectRepository;
 			EmployeeRepository = employeeRepository;
-
 		}
 
 		public void AddRefreshList()
@@ -31,11 +31,9 @@ namespace Employees
 			var list = SelectedProject.EmployeeWithWorkHours.ToList();
 			foreach (var employeeWithWorkHours in list)
 			{
-
 				if (employeeWithWorkHours.Employee.WorkPosition == WorkPosition.Developer)
 				{
 					workPositionDeveloperListBox.Items.Add(employeeWithWorkHours);
-					
 				}
 				else if (employeeWithWorkHours.Employee.WorkPosition == WorkPosition.WebDeveloper)
 					workPositionWebDeveloperListBox.Items.Add(employeeWithWorkHours);
@@ -44,7 +42,6 @@ namespace Employees
 				else if (employeeWithWorkHours.Employee.WorkPosition == WorkPosition.Accountant)
 					workPositionAccountantListBox.Items.Add(employeeWithWorkHours);
 				else workPositionSecretaryListBox.Items.Add(employeeWithWorkHours);
-				
 			}
 		}
 
@@ -85,12 +82,12 @@ namespace Employees
 				workPositionManagerListBox.Hide();
 				managerTextBox.Hide();
 			}
+
 			accountantTextBox.Text = $"Accountant({workPositionAccountantCount})";
 			managerTextBox.Text = $"Manager({workPositionManagerCount})";
 			developerTextBox.Text = $"Developer({workPositionDeveloperCount})";
 			webDeveloperTextBox.Text = $"Web Developer({workPositionWebDeveloperCount})";
 			secretaryTextBox.Text = $"Secretary({workPositionSecretaryCount})";
-
 		}
 
 		private void ProjectEditClick(object sender, EventArgs e)
@@ -99,7 +96,8 @@ namespace Employees
 			if (selectedProject == null) return;
 			Close();
 
-			var employeeEditForm = new ProjectEditForm(EmployeeRepository,ProjectRepository) { SelectedProject = selectedProject };
+			var employeeEditForm = new ProjectEditForm(EmployeeRepository, ProjectRepository)
+				{SelectedProject = selectedProject};
 			employeeEditForm.SetText();
 			employeeEditForm.RefreshList();
 			employeeEditForm.ShowDialog();

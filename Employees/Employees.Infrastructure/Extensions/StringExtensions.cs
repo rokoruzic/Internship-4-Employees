@@ -29,6 +29,7 @@ namespace Employees.Infrastructure.Extensions
 			text = text.Replace(" ", "");
 			return text;
 		}
+
 		public static string FirstCharToUpperAndRemoveMultipleWhiteSpaces(this string text)
 		{
 			if (text.Length == 0)
@@ -37,10 +38,8 @@ namespace Employees.Infrastructure.Extensions
 			var regex = new Regex(@"\s{2,}");
 			while (regex.IsMatch(text))
 				text = regex.Replace(text, " ", 1);
-			text = CultureInfo.CurrentCulture.TextInfo.ToUpper(text);
+			text = char.ToUpper(text[0]) + text.Substring(1);
 			return text;
 		}
-
-		
 	}
 }
