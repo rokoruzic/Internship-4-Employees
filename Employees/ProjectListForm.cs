@@ -22,17 +22,21 @@ namespace Employees
 			ProjectRepository= projectRepository;
 			EmployeeRepository = employeeRepository;
 
+			AddRefreshList();
+		}
+		public void AddRefreshList()
+		{
+			projectsListBox.Items.Clear();
 			foreach (var project in ProjectRepository.Projects)
 			{
 				projectsListBox.Items.Add(project);
 			}
 		}
-
 		private void ProjectEditButtonClick(object sender, EventArgs e)
 		{
 			var selectedProject = projectsListBox.SelectedItem as Project;
 			if (selectedProject == null) return;
-			var projectEditForm = new ProjectEditForm(EmployeeRepository) { SelectedProject = selectedProject };
+			var projectEditForm = new ProjectEditForm(EmployeeRepository,ProjectRepository) { SelectedProject = selectedProject };
 			projectEditForm.SetText();
 			projectEditForm.RefreshList();
 			projectEditForm.ShowDialog();
@@ -72,7 +76,7 @@ namespace Employees
 		private void ProjectListViewDetailsClick(object sender, EventArgs e)
 		{
 			var selectedProject = projectsListBox.SelectedItem as Project;
-			var projectDetailsForm = new ProjectDetailsForm(ProjectRepository){SelectedProject =selectedProject };
+			var projectDetailsForm = new ProjectDetailsForm(ProjectRepository,EmployeeRepository){SelectedProject =selectedProject };
 			projectDetailsForm.AddRefreshList();
 			projectDetailsForm.SetText();
 			projectDetailsForm.ShowDialog();

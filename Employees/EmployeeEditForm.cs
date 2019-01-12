@@ -22,6 +22,7 @@ namespace Employees
 		{
 			InitializeComponent();
 			ProjectRepository = projectRepository;
+			
 			foreach (var workPosition in (WorkPosition[])Enum.GetValues(typeof(WorkPosition)))
 			{
 				employeeEditWorkPositionComboBox.Items.Add(workPosition);
@@ -72,6 +73,7 @@ namespace Employees
 			{
 				var emptyEditOrNewFillOutBoxesErrorForm = new EmptyEditOrNewFillOutBoxesErrorForm();
 				emptyEditOrNewFillOutBoxesErrorForm.ShowDialog();
+				return;
 
 			}
 		
@@ -90,9 +92,17 @@ namespace Employees
 				foreach (var employeeWithWorkHours in listForForeach)
 				{
 					if (employeeWithWorkHours.Employee.Oib == SelectedItem.Oib)
-						project.EmployeeWithWorkHours.Remove(employeeWithWorkHours);
+						if (project.EmployeeWithWorkHours.Count <= 1)
+						{
+							var noEmployeesInProjectErrorForm = new NoEmployeesInProjectErrorForm();
+							noEmployeesInProjectErrorForm.ShowDialog();
+							return;
+						}
+
+					project.EmployeeWithWorkHours.Remove(employeeWithWorkHours);
 				}
 			}
+			
 
 			foreach (var projectWithWorkHours in projectsToAdd)
 			{
@@ -101,8 +111,7 @@ namespace Employees
 				employee1.WorkHours = projectWithWorkHours.WorkHours;
 				projectWithWorkHours.Project.EmployeeWithWorkHours.Add(employee1);
 			}
-			if(!ProjectRepository.IsTwoEmployees())
-				return;
+			
 			
 			Close();
 		}

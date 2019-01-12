@@ -46,11 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Errors\EmployeeOibDuplicateErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Errors\EmployeeOibDuplicateErrorForm.Designer.cs">
+      <DependentUpon>EmployeeOibDuplicateErrorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Errors\EmptyEditOrNewFillOutBoxesErrorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Errors\EmptyEditOrNewFillOutBoxesErrorForm.Designer.cs">
       <DependentUpon>EmptyEditOrNewFillOutBoxesErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Errors\NoEmployeesInProjectErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Errors\NoEmployeesInProjectErrorForm.Designer.cs">
+      <DependentUpon>NoEmployeesInProjectErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Errors\NoProjectOrEmployeeSelected.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Errors\NoProjectOrEmployeeSelected.Designer.cs">
+      <DependentUpon>NoProjectOrEmployeeSelected.cs</DependentUpon>
     </Compile>
     <Compile Include="Errors\NoWorkHoursErrorForm.cs">
       <SubType>Form</SubType>
@@ -63,6 +81,12 @@
     </Compile>
     <Compile Include="Errors\ProjectEndDateErrorForm.Designer.cs">
       <DependentUpon>ProjectEndDateErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Errors\ProjectNameDuplicateErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Errors\ProjectNameDuplicateErrorForm.Designer.cs">
+      <DependentUpon>ProjectNameDuplicateErrorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjectAddNewForm.cs">
       <SubType>Form</SubType>
@@ -132,14 +156,26 @@
     <EmbeddedResource Include="EmployeeListForm.resx">
       <DependentUpon>EmployeeListForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Errors\EmployeeOibDuplicateErrorForm.resx">
+      <DependentUpon>EmployeeOibDuplicateErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Errors\EmptyEditOrNewFillOutBoxesErrorForm.resx">
       <DependentUpon>EmptyEditOrNewFillOutBoxesErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Errors\NoEmployeesInProjectErrorForm.resx">
+      <DependentUpon>NoEmployeesInProjectErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Errors\NoProjectOrEmployeeSelected.resx">
+      <DependentUpon>NoProjectOrEmployeeSelected.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Errors\NoWorkHoursErrorForm.resx">
       <DependentUpon>NoWorkHoursErrorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Errors\ProjectEndDateErrorForm.resx">
       <DependentUpon>ProjectEndDateErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Errors\ProjectNameDuplicateErrorForm.resx">
+      <DependentUpon>ProjectNameDuplicateErrorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

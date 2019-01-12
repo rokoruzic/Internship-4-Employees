@@ -22,5 +22,15 @@ namespace Employees.Domain.Repositories
 				//new DateTime(2018, 10, 10))
 			};
 		}
+		public bool CreateProject(Project project)
+		{
+			foreach (var project1 in Projects)
+			{
+				if (project.Name==project1.Name)
+					return false;
+			}
+
+			return true;
+		}
 	}
 }

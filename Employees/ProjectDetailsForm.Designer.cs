@@ -39,6 +39,7 @@
 			this.accountantTextBox = new System.Windows.Forms.TextBox();
 			this.developerTextBox = new System.Windows.Forms.TextBox();
 			this.webDeveloperTextBox = new System.Windows.Forms.TextBox();
+			this.projectEditButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// workPositionManagerListBox
@@ -134,11 +135,22 @@
 			this.webDeveloperTextBox.Size = new System.Drawing.Size(185, 22);
 			this.webDeveloperTextBox.TabIndex = 10;
 			// 
+			// projectEditButton
+			// 
+			this.projectEditButton.Location = new System.Drawing.Point(623, 395);
+			this.projectEditButton.Name = "projectEditButton";
+			this.projectEditButton.Size = new System.Drawing.Size(96, 27);
+			this.projectEditButton.TabIndex = 11;
+			this.projectEditButton.Text = "Edit";
+			this.projectEditButton.UseVisualStyleBackColor = true;
+			this.projectEditButton.Click += new System.EventHandler(this.ProjectEditClick);
+			// 
 			// ProjectDetailsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.projectEditButton);
 			this.Controls.Add(this.webDeveloperTextBox);
 			this.Controls.Add(this.developerTextBox);
 			this.Controls.Add(this.accountantTextBox);
@@ -170,5 +182,6 @@
 		private System.Windows.Forms.TextBox accountantTextBox;
 		private System.Windows.Forms.TextBox developerTextBox;
 		private System.Windows.Forms.TextBox webDeveloperTextBox;
+		private System.Windows.Forms.Button projectEditButton;
 	}
 }

@@ -16,12 +16,14 @@ namespace Employees
 	public partial class ProjectDetailsForm : Form
 	{
 		public ProjectRepository ProjectRepository { get; set; }
+		public EmployeeRepository EmployeeRepository { get; set; }
 		public Project	SelectedProject { get; set; }
-		public ProjectDetailsForm(ProjectRepository projectRepository)
+		public ProjectDetailsForm(ProjectRepository projectRepository, EmployeeRepository employeeRepository)
 		{
 			InitializeComponent();
 			ProjectRepository = projectRepository;
-			
+			EmployeeRepository = employeeRepository;
+
 		}
 
 		public void AddRefreshList()
@@ -89,6 +91,18 @@ namespace Employees
 			webDeveloperTextBox.Text = $"Web Developer({workPositionWebDeveloperCount})";
 			secretaryTextBox.Text = $"Secretary({workPositionSecretaryCount})";
 
+		}
+
+		private void ProjectEditClick(object sender, EventArgs e)
+		{
+			var selectedProject = SelectedProject as Project;
+			if (selectedProject == null) return;
+			Close();
+
+			var employeeEditForm = new ProjectEditForm(EmployeeRepository,ProjectRepository) { SelectedProject = selectedProject };
+			employeeEditForm.SetText();
+			employeeEditForm.RefreshList();
+			employeeEditForm.ShowDialog();
 		}
 	}
 }

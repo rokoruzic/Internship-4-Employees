@@ -33,11 +33,7 @@ namespace Employees
 			}
 			dateOfBirthAddNewDateTimePicker.MaxDate = DateTime.Now.AddYears(-18);
 
-			if (firstNameAddNewTextbox.Text == null || lastNameAddNewTextbox.Text == null || oibAddNewTextbox.Text == null)
-			{
-				var emptyEditOrNewFillOutBoxesErrorForm = new EmptyEditOrNewFillOutBoxesErrorForm();
-				emptyEditOrNewFillOutBoxesErrorForm.ShowDialog();
-			}
+			
 
 			
 
@@ -60,17 +56,22 @@ namespace Employees
 			{
 				var emptyEditOrNewFillOutBoxesErrorForm = new EmptyEditOrNewFillOutBoxesErrorForm();
 				emptyEditOrNewFillOutBoxesErrorForm.ShowDialog();
+				return;
 			}
-			else
-			{
+			
+			
 				var employee = new Employee(firstNameAddNewTextbox.Text, lastNameAddNewTextbox.Text,
 					oibAddNewTextbox.Text, (WorkPosition) workPositionAddNewComboBox.SelectedItem,
 					dateOfBirthAddNewDateTimePicker.Value);
 				employee.ProjectWithWorkHours = ProjectWithWorkHoursList;
-				if (EmployeeRepository.CreateEmployee(employee))
-				{
-					EmployeeRepository.Employees.Add(employee);
-				}
+			if (!EmployeeRepository.CreateEmployee(employee))
+			{
+				var employeeOibDuplicateErrorForm = new EmployeeOibDuplicateErrorForm();
+				employeeOibDuplicateErrorForm.ShowDialog();
+				return;
+			}
+			EmployeeRepository.Employees.Add(employee);
+				
 
 				foreach (var project in ProjectRepository.Projects)
 				{
@@ -87,41 +88,27 @@ namespace Employees
 						}
 					}
 				}
-			}
-
-			//Project.Name = newProjectNameTextBox.Text;
-			//Project.StartDate = newProjectStartDateDatePicker.Value;
-			//Project.EndDate = newProjectEndDateDatePicker.Value;
-			//Project.EmployeeWithWorkHours = EmployeeWithWorkHoursList;
-			//ProjectRepository.Projects.Add(Project);
-			//foreach (var employee in EmployeeRepository.Employees)
-			//{
-			//	foreach (var employeeWithWorkHours in EmployeeWithWorkHoursList)
-			//	{
-			//		if (employeeWithWorkHours.Employee.Oib == employee.Oib)
-			//		{
-			//			var projectWithWorkHours = new ProjectWithWorkHours();
-			//			projectWithWorkHours.Project = Project;
-			//			projectWithWorkHours.WorkHours = employeeWithWorkHours.WorkHours;
-			//			employee.ProjectWithWorkHours.Add(projectWithWorkHours);
-			//		}
-			//	}
-			//}
-
+			
+		
 			Close();
-
-
-
-
-
 
 		}
 
-	
 
 		private void AddProjectToNewEmployeeClick(object sender, EventArgs e)
 		{
-			if (addWorkHoursToProjectToNewEmployeeNumUpDown.Value == 0) return;
+			if (projectAddNewComboBox.SelectedItem == null)
+			{
+				var noProjectOrEmployeeSelected = new NoProjectOrEmployeeSelected();
+				noProjectOrEmployeeSelected.ShowDialog();
+				return;
+			}
+			if (addWorkHoursToProjectToNewEmployeeNumUpDown.Value == 0)
+			{
+				var noWorkHoursError = new NoWorkHoursErrorForm();
+				noWorkHoursError.ShowDialog();
+				return;
+			};
 			var projectWithWorkHours = new ProjectWithWorkHours();
 			var projectToRemove = projectAddNewComboBox.SelectedItem;
 			projectWithWorkHours.Project = projectAddNewComboBox.SelectedItem as Project;
@@ -130,8 +117,6 @@ namespace Employees
 			projectAddNewComboBox.Items.Remove(projectToRemove);
 			projectAddNewComboBox.ResetText();
 
-
-			
 
 		}
 	}

@@ -72,6 +72,7 @@ namespace Employees
 			var employeeAddNewForm = new EmployeeAddNewForm(EmployeeRepository, ProjectRepository);
 			employeeAddNewForm.AddRefreshList();
 			employeeAddNewForm.ShowDialog();
+			AddRefreshList();
 			
 
 

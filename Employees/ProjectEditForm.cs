@@ -17,10 +17,12 @@ namespace Employees
 	{
 		public Project SelectedProject { get; set; }
 		public EmployeeRepository EmployeeRepository { get; set; }
-		public ProjectEditForm(EmployeeRepository employeeRepository)
+		public ProjectRepository ProjectRepository { get; set; }
+		public ProjectEditForm(EmployeeRepository employeeRepository,ProjectRepository projectRepository)
 		{
 			InitializeComponent();
 			EmployeeRepository = employeeRepository;
+			ProjectRepository = projectRepository;
 		}
 
 		public void SetText()
@@ -61,17 +63,41 @@ namespace Employees
 			{
 				var emptyEditOrNewFillOutBoxesErrorForm = new EmptyEditOrNewFillOutBoxesErrorForm();
 				emptyEditOrNewFillOutBoxesErrorForm.ShowDialog();
+				return;
 			}
-			if (removeEmployeeFromProjectComboBox.Items.Count == 0) return;
 
-				SelectedProject.Name = projectNameTextBox.Text;
-			SelectedProject.StartDate = projectStartDateDatePicker.Value;
-			SelectedProject.EndDate = projectEndDateDatePicker.Value;
-			if (!SelectedProject.IsEndDateAfterStartDate())
+			if (removeEmployeeFromProjectComboBox.Items.Count == 0)
+			{
+				var noEmployeesInProjectErrorForm = new NoEmployeesInProjectErrorForm();
+				noEmployeesInProjectErrorForm.ShowDialog();
+				return;
+			}
+
+		var tempProject = new Project(projectNameTextBox.Text, projectStartDateDatePicker.Value,
+				projectEndDateDatePicker.Value);
+			
+			foreach (var project in ProjectRepository.Projects)
+			{
+				if (tempProject.Name== project.Name && SelectedProject.Name !=project.Name)
+				{
+						var projectNameDuplicateErrorForm = new ProjectNameDuplicateErrorForm();
+						projectNameDuplicateErrorForm.ShowDialog();
+						return;
+				}
+			}
+			
+			if (!tempProject.IsEndDateAfterStartDate())
 			{
 				var projectEndDateError = new ProjectEndDateErrorForm();
 				projectEndDateError.ShowDialog();
+				return;
 			}
+			
+			SelectedProject.Name = projectNameTextBox.Text;
+			SelectedProject.StartDate = projectStartDateDatePicker.Value;
+			SelectedProject.EndDate = projectEndDateDatePicker.Value;
+
+
 
 			SelectedProject.EmployeeWithWorkHours = new List<EmployeeWithWorkHours>();
 			foreach (var employeeWithWorkHours in removeEmployeeFromProjectComboBox.Items)
@@ -102,10 +128,9 @@ namespace Employees
 				}
 			
 		
+			
 
-			Close();
-
-
+				Close();
 		}
 
 		private void RemoveEmployeeFromProjectClick(object sender, EventArgs e)
