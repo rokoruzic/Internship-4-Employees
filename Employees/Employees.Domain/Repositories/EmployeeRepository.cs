@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ClassLibrary1.Enums;
 using ClassLibrary1.Models;
 
@@ -27,17 +24,9 @@ namespace Employees.Domain.Repositories
 		public bool CreateEmployee(Employee employeeToAdd)
 		{
 			foreach (var employee in Employees)
-			{
 				if (employee.Oib == employeeToAdd.Oib || employeeToAdd.DateOfBirth.AddYears(18) > DateTime.Now)
 					return false;
-			}
-
 			return true;
-		}
-
-		public bool IsTwoEmployees()
-		{
-			return Employees.Count > 1;
 		}
 	}
 }

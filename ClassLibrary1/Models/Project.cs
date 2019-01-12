@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using Employees.Infrastructure.Extensions;
 
 namespace ClassLibrary1.Models
@@ -12,7 +7,6 @@ namespace ClassLibrary1.Models
 	public class Project
 	{
 		private string _name { get; set; }
-
 		public string Name
 		{
 			get { return _name; }

@@ -47,7 +47,7 @@ namespace Employees
 			plannedProjectsLabelCount.Text = numberOfPlannedProjectsCount;
 
 
-			EmployeeTextBox.Text = SelectedItem.PrintFullName();
+			EmployeeTextBox.Text = SelectedItem.PrintEmployeeWIthWorkhours();
 		}
 
 		private void EmployeeDetailsEditButtonClick(object sender, EventArgs e)

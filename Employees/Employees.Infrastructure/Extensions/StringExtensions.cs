@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
+﻿using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Employees.Infrastructure.Extensions
 {
@@ -13,13 +7,19 @@ namespace Employees.Infrastructure.Extensions
 	{
 		public static string CapitalizeFirstLetterAndRemoveMultipleWhiteSpaces(this string text)
 		{
-			if (text.Length == 0)
+			text = PrepareTextForUppercasing(text);
+			text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text);
+			return text;
+		}
+
+		private static string PrepareTextForUppercasing(string text)
+		{
+			if (string.IsNullOrEmpty(text))
 				return text;
 			text = text.Trim();
 			var regex = new Regex(@"\s{2,}");
 			while (regex.IsMatch(text))
 				text = regex.Replace(text, " ", 1);
-			text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text);
 			return text;
 		}
 
@@ -32,12 +32,7 @@ namespace Employees.Infrastructure.Extensions
 
 		public static string FirstCharToUpperAndRemoveMultipleWhiteSpaces(this string text)
 		{
-			if (text.Length == 0)
-				return text;
-			text = text.Trim();
-			var regex = new Regex(@"\s{2,}");
-			while (regex.IsMatch(text))
-				text = regex.Replace(text, " ", 1);
+			text = PrepareTextForUppercasing(text);
 			text = char.ToUpper(text[0]) + text.Substring(1);
 			return text;
 		}

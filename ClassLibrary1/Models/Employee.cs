@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using ClassLibrary1.Enums;
 using Employees.Infrastructure.Extensions;
 
@@ -54,60 +51,49 @@ namespace ClassLibrary1.Models
 			return $"{FirstName} {LastName} ";
 		}
 
-		public string PrintFullName()
+		public string PrintEmployeeWIthWorkhours()
 		{
-			return $"{FirstName} {LastName} {WorkHoursCount()} ";
+			return $"{FirstName} {LastName} {WorkHoursCount()}";
 		}
 
 		public int WorkHoursCount()
 		{
 			var workHoursCount = 0;
 			foreach (var workHours in ProjectWithWorkHours)
-			{
 				workHoursCount += workHours.WorkHours;
-			}
-
 			return workHoursCount;
 		}
 
 		public int NumberOfPlannedProjects()
 		{
-			int counter = 0;
+			var counter = 0;
 			foreach (var startEndDateTime in ProjectWithWorkHours)
-			{
 				if (startEndDateTime.Project.StartDate > DateTime.Now) counter++;
-			}
 
 			return counter;
 		}
 
 		public int NumberOfCurrentProjects()
 		{
-			int counter = 0;
+			var counter = 0;
 			foreach (var startEndDateTime in ProjectWithWorkHours)
-			{
-				if (startEndDateTime.Project.StartDate < DateTime.Now &&
-				    startEndDateTime.Project.EndDate > DateTime.Now)
+				if (startEndDateTime.Project.StartDate < DateTime.Now && startEndDateTime.Project.EndDate > DateTime.Now)
 					counter++;
-			}
 
 			return counter;
 		}
 
 		public int NumberOfPreviousProjects()
 		{
-			int counter = 0;
+			var counter = 0;
 			foreach (var startEndDateTime in ProjectWithWorkHours)
-			{
 				if (startEndDateTime.Project.EndDate < DateTime.Now) counter++;
-			}
-
 			return counter;
 		}
 
 		public bool IsOibValid()
 		{
-			return Regex.IsMatch(Oib, @"^[a-zA-Z]+$") && Oib.Length == 11;
+			return !Regex.IsMatch(Oib, @"[a-zA-Z]+") && Oib.Length == 11;
 		}
 	}
 }
