@@ -1,6 +1,6 @@
 ﻿namespace Employees.Errors
 {
-	partial class EmptyEditOrNewFillOutBoxesErrorForm
+	partial class ErrorForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -34,20 +34,19 @@
 			// errorLabel
 			// 
 			this.errorLabel.AutoSize = true;
-			this.errorLabel.Location = new System.Drawing.Point(335, 134);
+			this.errorLabel.Location = new System.Drawing.Point(334, 63);
 			this.errorLabel.Name = "errorLabel";
-			this.errorLabel.Size = new System.Drawing.Size(131, 17);
+			this.errorLabel.Size = new System.Drawing.Size(0, 17);
 			this.errorLabel.TabIndex = 0;
-			this.errorLabel.Text = "Please fill all boxes.";
 			// 
-			// EmptyEditOrNewFillOutBoxesErrorForm
+			// ErrorForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Controls.Add(this.errorLabel);
-			this.Name = "EmptyEditOrNewFillOutBoxesErrorForm";
-			this.Text = "EmptyEditOrNewFillOutBoxesErrorForm";
+			this.Name = "ErrorForm";
+			this.Text = "ErrorForm";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

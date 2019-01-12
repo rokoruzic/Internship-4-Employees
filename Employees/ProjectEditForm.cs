@@ -23,6 +23,9 @@ namespace Employees
 			InitializeComponent();
 			EmployeeRepository = employeeRepository;
 			ProjectRepository = projectRepository;
+			if(addEmployeeToProjectComboBox.SelectedItem==null)
+				addEmployeeToProjectButton.Hide();
+			
 		}
 
 		public void SetText()
@@ -59,17 +62,18 @@ namespace Employees
 
 		private void ProjectEditSaveClick(object sender, EventArgs e)
 		{
-			if (projectNameTextBox.Text == null)
+			if (string.IsNullOrEmpty(projectNameTextBox.Text))
 			{
-				var emptyEditOrNewFillOutBoxesErrorForm = new EmptyEditOrNewFillOutBoxesErrorForm();
-				emptyEditOrNewFillOutBoxesErrorForm.ShowDialog();
+				var errorForm = new ErrorForm("Please fill all boxes.");
+				errorForm.ShowDialog();
 				return;
 			}
 
+			
 			if (removeEmployeeFromProjectComboBox.Items.Count == 0)
 			{
-				var noEmployeesInProjectErrorForm = new NoEmployeesInProjectErrorForm();
-				noEmployeesInProjectErrorForm.ShowDialog();
+				var errorForm = new ErrorForm("There must be atleast one employee in project.");
+				errorForm.ShowDialog();
 				return;
 			}
 
@@ -80,16 +84,16 @@ namespace Employees
 			{
 				if (tempProject.Name== project.Name && SelectedProject.Name !=project.Name)
 				{
-						var projectNameDuplicateErrorForm = new ProjectNameDuplicateErrorForm();
-						projectNameDuplicateErrorForm.ShowDialog();
-						return;
+					var errorForm = new ErrorForm("There is already a project with that name.");
+					errorForm.ShowDialog();
+					return;
 				}
 			}
 			
 			if (!tempProject.IsEndDateAfterStartDate())
 			{
-				var projectEndDateError = new ProjectEndDateErrorForm();
-				projectEndDateError.ShowDialog();
+				var errorForm = new ErrorForm("Project End date is not valid, it must be after start date. Try again.");
+				errorForm.ShowDialog();
 				return;
 			}
 			
@@ -136,6 +140,12 @@ namespace Employees
 		private void RemoveEmployeeFromProjectClick(object sender, EventArgs e)
 		{
 			var tempEmployee = removeEmployeeFromProjectComboBox.SelectedItem;
+			if (removeEmployeeFromProjectComboBox.SelectedItem == null)
+			{
+				var errorForm = new ErrorForm("You must select employee to delete");
+				errorForm.ShowDialog();
+				return;
+			}
 			var tempEmployee2 = tempEmployee as EmployeeWithWorkHours;
 			removeEmployeeFromProjectComboBox.Items.Remove(tempEmployee);
 			addEmployeeToProjectComboBox.Items.Add(tempEmployee2.Employee);
@@ -145,10 +155,19 @@ namespace Employees
 
 		private void AddEmployeeToProjectClick(object sender, EventArgs e)
 		{
+			if (addEmployeeToProjectComboBox.SelectedItem == null)
+			{
+				var errorForm = new ErrorForm("You need to select item before clicking add.");
+				errorForm.ShowDialog();
+				return;
+			}
 			if (employeeAddWorkHoursNumUpDown.Value == 0)
 			{
-				var noWorkHoursErrorForm = new NoWorkHoursErrorForm();
-				noWorkHoursErrorForm.ShowDialog();
+				var errorForm = new ErrorForm("Work hours can't be zero.");
+				errorForm.ShowDialog();
+				return;
+
+				
 			}
 			var employeeWithWorkHours = new EmployeeWithWorkHours();
 			employeeWithWorkHours.WorkHours = (int)employeeAddWorkHoursNumUpDown.Value;
@@ -161,7 +180,13 @@ namespace Employees
 					addEmployeeToProjectComboBox.Items.Remove(employee);
 			}
 			addEmployeeToProjectComboBox.ResetText();
+			addEmployeeToProjectButton.Hide();
 
+		}
+
+		private void AddEmployeeToProjectComboBoxClick(object sender, EventArgs e)
+		{
+			addEmployeeToProjectButton.Show();
 		}
 	}
 }

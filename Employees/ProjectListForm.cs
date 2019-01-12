@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClassLibrary1.Models;
 using Employees.Domain.Repositories;
+using Employees.Errors;
 
 namespace Employees
 {
@@ -35,20 +36,31 @@ namespace Employees
 		private void ProjectEditButtonClick(object sender, EventArgs e)
 		{
 			var selectedProject = projectsListBox.SelectedItem as Project;
-			if (selectedProject == null) return;
+			if (selectedProject == null)
+			{
+				var errorForm = new ErrorForm("You must select project to edit");
+				errorForm.ShowDialog();
+				return;
+			}
 			var projectEditForm = new ProjectEditForm(EmployeeRepository,ProjectRepository) { SelectedProject = selectedProject };
 			projectEditForm.SetText();
 			projectEditForm.RefreshList();
+			AddRefreshList();
 			projectEditForm.ShowDialog();
 
 		}
 
 		private void ProjectDeleteClick(object sender, EventArgs e)
 		{
-			var selectedProject1 = projectsListBox.SelectedItem as Project;
-			if (selectedProject1 == null) return;
+			var selectedProject = projectsListBox.SelectedItem as Project;
+			if (selectedProject == null)
+			{
+				var errorForm = new ErrorForm("You must select project to delete");
+				errorForm.ShowDialog();
+				return;
+			}
 
-			ProjectRepository.Projects.Remove(selectedProject1);
+			ProjectRepository.Projects.Remove(selectedProject);
 
 
 			foreach (var employee in EmployeeRepository.Employees)
@@ -61,8 +73,7 @@ namespace Employees
 
 			}
 
-			
-			Close();
+			AddRefreshList();
 		}
 
 		private void AddNewProjectClick(object sender, EventArgs e)
@@ -70,12 +81,19 @@ namespace Employees
 			
 			var addNewProject = new ProjectAddNewForm(ProjectRepository, EmployeeRepository);
 			addNewProject.AddRefreshList();
+			AddRefreshList();
 			addNewProject.ShowDialog();
 		}
 
 		private void ProjectListViewDetailsClick(object sender, EventArgs e)
 		{
 			var selectedProject = projectsListBox.SelectedItem as Project;
+			if (selectedProject == null)
+			{
+				var errorForm = new ErrorForm("You must select project to view");
+				errorForm.ShowDialog();
+				return;
+			}
 			var projectDetailsForm = new ProjectDetailsForm(ProjectRepository,EmployeeRepository){SelectedProject =selectedProject };
 			projectDetailsForm.AddRefreshList();
 			projectDetailsForm.SetText();

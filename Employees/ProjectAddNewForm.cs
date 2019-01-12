@@ -54,14 +54,15 @@ namespace Employees
 		{
 			if (addWorkHoursToEmployeeNumUpDown.Value == 0 )
 			{
-				var noWorkHoursError = new NoWorkHoursErrorForm();
-				noWorkHoursError.ShowDialog();
+				var errorForm = new ErrorForm("Work hours can't be zero.");
+				errorForm.ShowDialog();
+				return;
 
 			};
 			if (projectSelectEmployeesComboBox.SelectedItem == null)
 			{
-				var noProjectOrEmployeeSelected = new NoProjectOrEmployeeSelected();
-				noProjectOrEmployeeSelected.ShowDialog();
+				var errorForm = new ErrorForm("You need to select item before clicking add.");
+				errorForm.ShowDialog();
 				return;
 
 			}
@@ -80,34 +81,34 @@ namespace Employees
 
 			if (projectSelectEmployeesComboBox.Items.Count == EmployeeRepository.Employees.Count)
 			{
-				var noEmployeesInProjectErrorForm = new NoEmployeesInProjectErrorForm();
-				noEmployeesInProjectErrorForm.ShowDialog();
+				var errorForm = new ErrorForm("There must be atleast one employee in project.");
+				errorForm.ShowDialog();
 				return;
 			}
 			Project.Name = newProjectNameTextBox.Text;
 			Project.StartDate = newProjectStartDateDatePicker.Value;
 			Project.EndDate = newProjectEndDateDatePicker.Value;
 			Project.EmployeeWithWorkHours = EmployeeWithWorkHoursList;
-			if (Project.Name == null )
+			if (string.IsNullOrEmpty(Project.Name))
 			{
-				var emptyEditOrNewFillOutBoxesErrorForm = new EmptyEditOrNewFillOutBoxesErrorForm();
-				emptyEditOrNewFillOutBoxesErrorForm.ShowDialog();
+				var errorForm = new ErrorForm("Please fill all boxes.");
+				errorForm.ShowDialog();
 				return;
 
 			}
 
 			if (!Project.IsEndDateAfterStartDate())
 			{
-				var projectEndDateError = new ProjectEndDateErrorForm();
-				projectEndDateError.ShowDialog();
+				var errorForm = new ErrorForm("Project End date is not valid, it must be after start date. Try again.");
+				errorForm.ShowDialog();
 				return;
 			}
 
 			if (!ProjectRepository.CreateProject(Project))
 			{
 
-				var projectNameDuplicateErrorForm = new ProjectNameDuplicateErrorForm();
-				projectNameDuplicateErrorForm.ShowDialog();
+				var errorForm = new ErrorForm("There is already a project with that name.");
+				errorForm.ShowDialog();
 				return;
 			}
 			ProjectRepository.Projects.Add(Project);

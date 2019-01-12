@@ -40,5 +40,7 @@ namespace Employees.Infrastructure.Extensions
 			text = CultureInfo.CurrentCulture.TextInfo.ToUpper(text);
 			return text;
 		}
+
+		
 	}
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ClassLibrary1.Enums;
 using Employees.Infrastructure.Extensions;
@@ -101,6 +102,11 @@ namespace ClassLibrary1.Models
 			}
 
 			return counter;
+		}
+
+		public bool IsOibValid()
+		{
+			return Regex.IsMatch(Oib, @"^[a-zA-Z]+$") && Oib.Length == 11;
 		}
 
 		

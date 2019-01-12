@@ -68,11 +68,12 @@ namespace Employees
 			SelectedItem.FirstName = employeeEditFirstNameTextBox.Text;
 			SelectedItem.LastName = employeeLastNameEditTextBox.Text;
 			SelectedItem.DateOfBirth = employeeEditDateTimePicker.Value;
-			if (SelectedItem.FirstName == null || SelectedItem.LastName == null || SelectedItem.Oib == null
+			if (string.IsNullOrEmpty(SelectedItem.FirstName) || string.IsNullOrEmpty(SelectedItem.LastName)
+			        || string.IsNullOrEmpty(SelectedItem.Oib)
 			    )
 			{
-				var emptyEditOrNewFillOutBoxesErrorForm = new EmptyEditOrNewFillOutBoxesErrorForm();
-				emptyEditOrNewFillOutBoxesErrorForm.ShowDialog();
+				var errorForm = new ErrorForm("Please fill all boxes.");
+				errorForm.ShowDialog();
 				return;
 
 			}
@@ -94,8 +95,8 @@ namespace Employees
 					if (employeeWithWorkHours.Employee.Oib == SelectedItem.Oib)
 						if (project.EmployeeWithWorkHours.Count <= 1)
 						{
-							var noEmployeesInProjectErrorForm = new NoEmployeesInProjectErrorForm();
-							noEmployeesInProjectErrorForm.ShowDialog();
+							var errorForm = new ErrorForm("There must be at least one employee in project.");
+							errorForm.ShowDialog();
 							return;
 						}
 
@@ -120,8 +121,16 @@ namespace Employees
 		{
 			if (workHoursNumericUpDown.Value == 0)
 			{
-				var noWorkHoursErrorForm = new NoWorkHoursErrorForm();
-				noWorkHoursErrorForm.ShowDialog();
+				var errorForm = new ErrorForm("Work hours can't be zero.");
+				errorForm.ShowDialog();
+				return;
+			}
+
+			if (addProjectToEmployeeComboBox.SelectedItem == null)
+			{
+				var errorForm = new ErrorForm("You need to select item before clicking add.");
+				errorForm.ShowDialog();
+				return;
 			}
 			var projectWithWorkHours = new ProjectWithWorkHours();
 			projectWithWorkHours.WorkHours = (int)workHoursNumericUpDown.Value;
@@ -139,6 +148,12 @@ namespace Employees
 
 		private void EmployeeDeleteProjectClick(object sender, EventArgs e)
 		{
+			if (RemoveProjectFromEmployeeComboBox.SelectedItem == null)
+			{
+				var errorForm = new ErrorForm("You must select project to delete");
+				errorForm.ShowDialog();
+				return;
+			}
 			var tempProject = RemoveProjectFromEmployeeComboBox.SelectedItem;
 			var tempProject2 = tempProject as ProjectWithWorkHours;
 			RemoveProjectFromEmployeeComboBox.Items.Remove(tempProject);
