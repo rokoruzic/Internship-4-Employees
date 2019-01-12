@@ -68,9 +68,9 @@ namespace ClassLibrary1.Models
 		public int NumberOfPlannedProjects()
 		{
 			int counter=0;
-			foreach (var StartEndDateTime in ProjectWithWorkHours)
+			foreach (var startEndDateTime in ProjectWithWorkHours)
 			{
-				if (StartEndDateTime.Project.StartDate > DateTime.Now)
+				if (startEndDateTime.Project.StartDate > DateTime.Now)
 					counter++;
 			
 			}
@@ -80,9 +80,9 @@ namespace ClassLibrary1.Models
 		public int NumberOfCurrentProjects()
 		{
 			int counter = 0;
-			foreach (var StartEndDateTime in ProjectWithWorkHours)
+			foreach (var startEndDateTime in ProjectWithWorkHours)
 			{
-				if (StartEndDateTime.Project.StartDate < DateTime.Now && StartEndDateTime.Project.EndDate
+				if (startEndDateTime.Project.StartDate < DateTime.Now && startEndDateTime.Project.EndDate
 				    >DateTime.Now)
 					counter++;
 
@@ -93,9 +93,9 @@ namespace ClassLibrary1.Models
 		public int NumberOfPreviousProjects()
 		{
 			int counter = 0;
-			foreach (var StartEndDateTime in ProjectWithWorkHours)
+			foreach (var startEndDateTime in ProjectWithWorkHours)
 			{
-				if (StartEndDateTime.Project.EndDate < DateTime.Now)
+				if (startEndDateTime.Project.EndDate < DateTime.Now)
 					counter++;
 
 			}

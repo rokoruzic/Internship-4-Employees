@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ClassLibrary1.Enums;
 using ClassLibrary1.Models;
 using Employees.Domain.Repositories;
+using Employees.Errors;
 
 namespace Employees
 {
@@ -66,6 +67,13 @@ namespace Employees
 			SelectedItem.FirstName = employeeEditFirstNameTextBox.Text;
 			SelectedItem.LastName = employeeLastNameEditTextBox.Text;
 			SelectedItem.DateOfBirth = employeeEditDateTimePicker.Value;
+			if (SelectedItem.FirstName == null || SelectedItem.LastName == null || SelectedItem.Oib == null
+			    )
+			{
+				var emptyEditOrNewFillOutBoxesErrorForm = new EmptyEditOrNewFillOutBoxesErrorForm();
+				emptyEditOrNewFillOutBoxesErrorForm.ShowDialog();
+
+			}
 		
 			SelectedItem.WorkPosition = (WorkPosition) employeeEditWorkPositionComboBox.SelectedItem;
 			SelectedItem.ProjectWithWorkHours=new List<ProjectWithWorkHours>();
@@ -93,7 +101,7 @@ namespace Employees
 				employee1.WorkHours = projectWithWorkHours.WorkHours;
 				projectWithWorkHours.Project.EmployeeWithWorkHours.Add(employee1);
 			}
-			if(!ProjectRepository.isTwoEmployees())
+			if(!ProjectRepository.IsTwoEmployees())
 				return;
 			
 			Close();
@@ -101,6 +109,11 @@ namespace Employees
 
 		private void AddProjectToEmployeeClick(object sender, EventArgs e)
 		{
+			if (workHoursNumericUpDown.Value == 0)
+			{
+				var noWorkHoursErrorForm = new NoWorkHoursErrorForm();
+				noWorkHoursErrorForm.ShowDialog();
+			}
 			var projectWithWorkHours = new ProjectWithWorkHours();
 			projectWithWorkHours.WorkHours = (int)workHoursNumericUpDown.Value;
 			projectWithWorkHours.Project= (Project)addProjectToEmployeeComboBox.SelectedItem;

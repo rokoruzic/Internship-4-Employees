@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ClassLibrary1.Enums;
 using ClassLibrary1.Models;
 using Employees.Domain.Repositories;
+using Employees.Errors;
 
 namespace Employees
 {
@@ -34,9 +35,8 @@ namespace Employees
 
 			if (firstNameAddNewTextbox.Text == null || lastNameAddNewTextbox.Text == null || oibAddNewTextbox.Text == null)
 			{
-				var EmptyAddEmployeeErrorForm = new EmptyAddEmployeeErrorForm();
-				EmptyAddEmployeeErrorForm.ShowDialog();
-				ErrorDialog.ShowDialog();
+				var emptyEditOrNewFillOutBoxesErrorForm = new EmptyEditOrNewFillOutBoxesErrorForm();
+				emptyEditOrNewFillOutBoxesErrorForm.ShowDialog();
 			}
 
 			
@@ -58,8 +58,8 @@ namespace Employees
 			if (firstNameAddNewTextbox.Text == null || lastNameAddNewTextbox.Text == null || oibAddNewTextbox.Text == null
 			  ||  workPositionAddNewComboBox.SelectedItem==null)
 			{
-				var emptyAddEmployeeErrorForm = new EmptyAddEmployeeErrorForm();
-				emptyAddEmployeeErrorForm.ShowDialog();
+				var emptyEditOrNewFillOutBoxesErrorForm = new EmptyEditOrNewFillOutBoxesErrorForm();
+				emptyEditOrNewFillOutBoxesErrorForm.ShowDialog();
 			}
 			else
 			{
@@ -121,6 +121,7 @@ namespace Employees
 
 		private void AddProjectToNewEmployeeClick(object sender, EventArgs e)
 		{
+			if (addWorkHoursToProjectToNewEmployeeNumUpDown.Value == 0) return;
 			var projectWithWorkHours = new ProjectWithWorkHours();
 			var projectToRemove = projectAddNewComboBox.SelectedItem;
 			projectWithWorkHours.Project = projectAddNewComboBox.SelectedItem as Project;

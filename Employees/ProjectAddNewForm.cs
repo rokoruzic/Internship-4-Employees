@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClassLibrary1.Models;
 using Employees.Domain.Repositories;
+using Employees.Errors;
 
 namespace Employees
 {
@@ -51,6 +52,7 @@ namespace Employees
 
 		private void EmployeeAddToProjectClick(object sender, EventArgs e)
 		{
+			if (addWorkHoursToEmployeeNumUpDown.Value == 0) return;
 			var employeeWithWorkHours = new EmployeeWithWorkHours();
 			var employeeToRemove = projectSelectEmployeesComboBox.SelectedItem;
 			employeeWithWorkHours.Employee= projectSelectEmployeesComboBox.SelectedItem as Employee;
@@ -63,10 +65,23 @@ namespace Employees
 
 		private void ProjectAddNewSaveClick(object sender, EventArgs e)
 		{
+
+			if (projectSelectEmployeesComboBox.Items.Count == EmployeeRepository.Employees.Count) return;
 			Project.Name = newProjectNameTextBox.Text;
 			Project.StartDate = newProjectStartDateDatePicker.Value;
 			Project.EndDate = newProjectEndDateDatePicker.Value;
 			Project.EmployeeWithWorkHours = EmployeeWithWorkHoursList;
+			if (Project.Name == null)
+			{
+				var emptyEditOrNewFillOutBoxesErrorForm = new EmptyEditOrNewFillOutBoxesErrorForm();
+				emptyEditOrNewFillOutBoxesErrorForm.ShowDialog();
+
+			}
+
+			if (!Project.IsEndDateAfterStartDate())
+			{
+
+			}
 			ProjectRepository.Projects.Add(Project);
 			foreach (var employee in EmployeeRepository.Employees)
 			{

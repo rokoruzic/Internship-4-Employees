@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClassLibrary1.Models;
 using Employees.Domain.Repositories;
+using Employees.Errors;
 
 namespace Employees
 {
@@ -56,14 +57,23 @@ namespace Employees
 
 		private void ProjectEditSaveClick(object sender, EventArgs e)
 		{
+			if (projectNameTextBox.Text == null)
+			{
+				var emptyEditOrNewFillOutBoxesErrorForm = new EmptyEditOrNewFillOutBoxesErrorForm();
+				emptyEditOrNewFillOutBoxesErrorForm.ShowDialog();
+			}
+			if (removeEmployeeFromProjectComboBox.Items.Count == 0) return;
 
-			SelectedProject.Name = projectNameTextBox.Text;
+				SelectedProject.Name = projectNameTextBox.Text;
 			SelectedProject.StartDate = projectStartDateDatePicker.Value;
 			SelectedProject.EndDate = projectEndDateDatePicker.Value;
 			if (!SelectedProject.IsEndDateAfterStartDate())
-				return;
-			SelectedProject.EmployeeWithWorkHours = new List<EmployeeWithWorkHours>();
+			{
+				var projectEndDateError = new ProjectEndDateErrorForm();
+				projectEndDateError.ShowDialog();
+			}
 
+			SelectedProject.EmployeeWithWorkHours = new List<EmployeeWithWorkHours>();
 			foreach (var employeeWithWorkHours in removeEmployeeFromProjectComboBox.Items)
 			{
 				SelectedProject.EmployeeWithWorkHours.Add(employeeWithWorkHours as EmployeeWithWorkHours);
@@ -81,8 +91,8 @@ namespace Employees
 
 			}
 
-			if (SelectedProject.IsEmployeeInProject())
-			{
+			
+			
 				foreach (var employeeWithWorkHours in employeesToAdd)
 				{
 					var project1 = new ProjectWithWorkHours();
@@ -90,8 +100,8 @@ namespace Employees
 					project1.WorkHours = employeeWithWorkHours.WorkHours;
 					employeeWithWorkHours.Employee.ProjectWithWorkHours.Add(project1);
 				}
-			}
-			else return;
+			
+		
 
 			Close();
 
@@ -110,6 +120,11 @@ namespace Employees
 
 		private void AddEmployeeToProjectClick(object sender, EventArgs e)
 		{
+			if (employeeAddWorkHoursNumUpDown.Value == 0)
+			{
+				var noWorkHoursErrorForm = new NoWorkHoursErrorForm();
+				noWorkHoursErrorForm.ShowDialog();
+			}
 			var employeeWithWorkHours = new EmployeeWithWorkHours();
 			employeeWithWorkHours.WorkHours = (int)employeeAddWorkHoursNumUpDown.Value;
 			employeeWithWorkHours.Employee = (Employee)addEmployeeToProjectComboBox.SelectedItem;

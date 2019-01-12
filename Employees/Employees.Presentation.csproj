@@ -46,6 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Errors\EmptyEditOrNewFillOutBoxesErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Errors\EmptyEditOrNewFillOutBoxesErrorForm.Designer.cs">
+      <DependentUpon>EmptyEditOrNewFillOutBoxesErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Errors\NoWorkHoursErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Errors\NoWorkHoursErrorForm.Designer.cs">
+      <DependentUpon>NoWorkHoursErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Errors\ProjectEndDateErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Errors\ProjectEndDateErrorForm.Designer.cs">
+      <DependentUpon>ProjectEndDateErrorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectAddNewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,12 +93,6 @@
     </Compile>
     <Compile Include="EmployeeListForm.Designer.cs">
       <DependentUpon>EmployeeListForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EmptyAddEmployeeErrorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EmptyAddEmployeeErrorForm.Designer.cs">
-      <DependentUpon>EmptyAddEmployeeErrorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -120,8 +132,14 @@
     <EmbeddedResource Include="EmployeeListForm.resx">
       <DependentUpon>EmployeeListForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmptyAddEmployeeErrorForm.resx">
-      <DependentUpon>EmptyAddEmployeeErrorForm.cs</DependentUpon>
+    <EmbeddedResource Include="Errors\EmptyEditOrNewFillOutBoxesErrorForm.resx">
+      <DependentUpon>EmptyEditOrNewFillOutBoxesErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Errors\NoWorkHoursErrorForm.resx">
+      <DependentUpon>NoWorkHoursErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Errors\ProjectEndDateErrorForm.resx">
+      <DependentUpon>ProjectEndDateErrorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
@@ -177,5 +195,6 @@
       <Name>Employees.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

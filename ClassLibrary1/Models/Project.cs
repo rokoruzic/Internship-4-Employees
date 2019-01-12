@@ -32,10 +32,10 @@ namespace ClassLibrary1.Models
 			return EndDate > StartDate;
 		}
 
-		public  bool IsEmployeeInProject()
-		{
-			return EmployeeWithWorkHours.Count > 0;
-		}
+		//public  bool IsEmployeeInProject()
+		//{
+		//	return EmployeeWithWorkHours.Count > 0;
+		//}
 
 
 

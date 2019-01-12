@@ -59,7 +59,7 @@ namespace Employees
 		{
 			var selectedEmployee = employeesListBox.SelectedItem as Employee;
 			if (selectedEmployee == null) return;
-			if (!ProjectRepository.isTwoEmployees())
+			if (!ProjectRepository.IsTwoEmployees())
 				return;
 			EmployeeRepository.Employees.Remove(selectedEmployee);
 			ProjectRepository.Employees.Remove(selectedEmployee);
