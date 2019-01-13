@@ -40,7 +40,7 @@ namespace Employees
 				return;
 			}
 
-			var employeeEditForm = new EmployeeEditForm(ProjectRepository) {SelectedItem = selectedEmployee};
+			var employeeEditForm = new EmployeeEditForm(ProjectRepository, EmployeeRepository) {SelectedItem = selectedEmployee};
 
 			employeeEditForm.EditedEmployeeSetText();
 			employeeEditForm.RefreshList();
@@ -128,7 +128,7 @@ namespace Employees
 				return;
 			}
 
-			var employeeDetailsForm = new EmployeeDetailsForm {SelectedItem = selectedEmployee};
+			var employeeDetailsForm = new EmployeeDetailsForm(ProjectRepository, EmployeeRepository){SelectedItem = selectedEmployee};
 			employeeDetailsForm.SetText();
 			employeeDetailsForm.ShowDialog();
 		}

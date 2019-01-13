@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ClassLibrary1.Enums;
 using ClassLibrary1.Models;
 
@@ -21,12 +22,33 @@ namespace Employees.Domain.Repositories
 			};
 		}
 
-		public bool CreateEmployee(Employee employeeToAdd)
+		public bool Create(Employee employeeToAdd)
 		{
 			foreach (var employee in Employees)
 				if (employee.Oib == employeeToAdd.Oib || employeeToAdd.DateOfBirth.AddYears(18) > DateTime.Now)
 					return false;
 			return true;
+		}
+
+		public string Edit(Employee employeeToEdit, List<ProjectWithWorkHours> projectWithWorkhoursToAdd, ProjectRepository projectRepository)
+		{
+			if (string.IsNullOrEmpty(employeeToEdit.FirstName) 
+			    || string.IsNullOrEmpty(employeeToEdit.LastName)
+			    || string.IsNullOrEmpty(employeeToEdit.Oib)
+			)
+			{
+				return "Please fill all boxes.";
+			}
+
+			var result = projectRepository.AddEmployeeWithWorkHours(employeeToEdit, projectWithWorkhoursToAdd);
+			if (result != null) return result;
+
+			employeeToEdit.ProjectWithWorkHours = new List<ProjectWithWorkHours>();
+
+			foreach (var projectWithWorkHoursItem in projectWithWorkhoursToAdd)
+				employeeToEdit.ProjectWithWorkHours.Add(projectWithWorkHoursItem);
+			
+			return null;
 		}
 	}
 }

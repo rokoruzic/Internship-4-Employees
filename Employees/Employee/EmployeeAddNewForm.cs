@@ -56,7 +56,7 @@ namespace Employees
 			var employee = new Employee(firstNameAddNewTextbox.Text, lastNameAddNewTextbox.Text, oibAddNewTextbox.Text,
 				(WorkPosition) workPositionAddNewComboBox.SelectedItem, dateOfBirthAddNewDateTimePicker.Value);
 			employee.ProjectWithWorkHours = ProjectWithWorkHoursList;
-			if (!EmployeeRepository.CreateEmployee(employee))
+			if (!EmployeeRepository.Create(employee))
 			{
 				var errorForm = new ErrorForm("That oib is already added.");
 				errorForm.ShowDialog();

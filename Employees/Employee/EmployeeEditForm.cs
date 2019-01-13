@@ -18,11 +18,13 @@ namespace Employees
 	{
 		public Employee SelectedItem { get; set; }
 		public ProjectRepository ProjectRepository { get; set; }
+		public EmployeeRepository EmployeeRepository { get; set; }
 
-		public EmployeeEditForm(ProjectRepository projectRepository)
+		public EmployeeEditForm(ProjectRepository projectRepository, EmployeeRepository employeeRepository)
 		{
 			InitializeComponent();
 			ProjectRepository = projectRepository;
+			EmployeeRepository = employeeRepository;
 
 			foreach (var workPosition in (WorkPosition[]) Enum.GetValues(typeof(WorkPosition)))
 			{
@@ -69,51 +71,21 @@ namespace Employees
 			SelectedItem.FirstName = employeeEditFirstNameTextBox.Text;
 			SelectedItem.LastName = employeeLastNameEditTextBox.Text;
 			SelectedItem.DateOfBirth = employeeEditDateTimePicker.Value;
-			if (string.IsNullOrEmpty(SelectedItem.FirstName) || string.IsNullOrEmpty(SelectedItem.LastName)
-			                                                 || string.IsNullOrEmpty(SelectedItem.Oib)
-			)
+			SelectedItem.WorkPosition = (WorkPosition)employeeEditWorkPositionComboBox.SelectedItem;
+
+			var listOfProjectWithHoursToAdd = new List<ProjectWithWorkHours>();
+			foreach (var projectWithWorkHoursItem in RemoveProjectFromEmployeeComboBox.Items)
 			{
-				var errorForm = new ErrorForm("Please fill all boxes.");
+				listOfProjectWithHoursToAdd.Add(projectWithWorkHoursItem as ProjectWithWorkHours);
+			}
+
+			var errorMessage = EmployeeRepository.Edit(SelectedItem, listOfProjectWithHoursToAdd, ProjectRepository);
+			if (errorMessage != null)
+			{
+				var errorForm = new ErrorForm(errorMessage);
 				errorForm.ShowDialog();
 				return;
 			}
-
-			SelectedItem.WorkPosition = (WorkPosition) employeeEditWorkPositionComboBox.SelectedItem;
-			SelectedItem.ProjectWithWorkHours = new List<ProjectWithWorkHours>();
-
-			foreach (var projectWithWorkHoursItem in RemoveProjectFromEmployeeComboBox.Items)
-			{
-				SelectedItem.ProjectWithWorkHours.Add(projectWithWorkHoursItem as ProjectWithWorkHours);
-			}
-
-			var projectsToAdd = SelectedItem.ProjectWithWorkHours;
-			foreach (var project in ProjectRepository.Projects)
-			{
-				var listForForeach = project.EmployeeWithWorkHours.ToList();
-				foreach (var employeeWithWorkHours in listForForeach)
-				{
-					if (employeeWithWorkHours.Employee.Oib == SelectedItem.Oib)
-						if (project.EmployeeWithWorkHours.Count <= 1)
-						{
-							var errorForm = new ErrorForm("There must be at least one employee in project.");
-							errorForm.ShowDialog();
-							return;
-						}
-
-					project.EmployeeWithWorkHours.Remove(employeeWithWorkHours);
-				}
-			}
-
-
-			foreach (var projectWithWorkHours in projectsToAdd)
-			{
-				var employee1 = new EmployeeWithWorkHours();
-				employee1.Employee = SelectedItem;
-				employee1.WorkHours = projectWithWorkHours.WorkHours;
-				projectWithWorkHours.Project.EmployeeWithWorkHours.Add(employee1);
-			}
-
-
 			Close();
 		}
 
