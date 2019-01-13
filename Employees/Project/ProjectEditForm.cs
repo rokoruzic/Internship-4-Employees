@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClassLibrary1.Models;
 using Employees.Domain.Repositories;
@@ -24,8 +18,7 @@ namespace Employees
 			InitializeComponent();
 			EmployeeRepository = employeeRepository;
 			ProjectRepository = projectRepository;
-			if (addEmployeeToProjectComboBox.SelectedItem == null)
-				addEmployeeToProjectButton.Hide();
+			if (addEmployeeToProjectComboBox.SelectedItem == null) addEmployeeToProjectButton.Hide();
 		}
 
 		public void SetText()
@@ -44,12 +37,10 @@ namespace Employees
 				foreach (var employeeWithWorkHours in SelectedProject.EmployeeWithWorkHours)
 
 				{
-					if (employeeWithWorkHours.Employee.Oib == employee.Oib)
-						isFound = true;
+					if (employeeWithWorkHours.Employee.Oib == employee.Oib) isFound = true;
 				}
 
-				if (!isFound)
-					addEmployeeToProjectComboBox.Items.Add(employee);
+				if (!isFound) addEmployeeToProjectComboBox.Items.Add(employee);
 			}
 
 			foreach (var selectedProjectEmployeeWithWorkHour in SelectedProject.EmployeeWithWorkHours)
@@ -67,20 +58,12 @@ namespace Employees
 				return;
 			}
 
-
-			if (removeEmployeeFromProjectComboBox.Items.Count == 0)
-			{
-				var errorForm = new ErrorForm("There must be at least one employee in project.");
-				errorForm.ShowDialog();
-				return;
-			}
-
 			var tempProject = new Project(projectNameTextBox.Text, projectStartDateDatePicker.Value,
 				projectEndDateDatePicker.Value);
 
 			foreach (var project in ProjectRepository.Projects)
 			{
-				if (tempProject.Name == project.Name && SelectedProject.Name != project.Name)
+				if (tempProject.Name == project.Name && projectNameTextBox.Text != project.Name)
 				{
 					var errorForm = new ErrorForm("There is already a project with that name.");
 					errorForm.ShowDialog();
@@ -88,44 +71,23 @@ namespace Employees
 				}
 			}
 
-			if (!tempProject.IsEndDateAfterStartDate())
-			{
-				var errorForm = new ErrorForm("Project End date is not valid, it must be after start date. Try again.");
-				errorForm.ShowDialog();
-				return;
-			}
-
 			SelectedProject.Name = projectNameTextBox.Text;
 			SelectedProject.StartDate = projectStartDateDatePicker.Value;
 			SelectedProject.EndDate = projectEndDateDatePicker.Value;
-
-
-			SelectedProject.EmployeeWithWorkHours = new List<EmployeeWithWorkHours>();
-			foreach (var employeeWithWorkHours in removeEmployeeFromProjectComboBox.Items)
+			var removeEmployeeFromProjectComboBoxItems = new List<EmployeeWithWorkHours>();
+			foreach (var employeeWithWorkHoursItem in removeEmployeeFromProjectComboBox.Items)
 			{
-				SelectedProject.EmployeeWithWorkHours.Add(employeeWithWorkHours as EmployeeWithWorkHours);
+				removeEmployeeFromProjectComboBoxItems.Add(employeeWithWorkHoursItem as EmployeeWithWorkHours);
 			}
 
-			var employeesToAdd = SelectedProject.EmployeeWithWorkHours;
-			foreach (var employee in EmployeeRepository.Employees)
+			var result = ProjectRepository.Edit(SelectedProject, EmployeeRepository,
+				removeEmployeeFromProjectComboBoxItems);
+			if (result != null)
 			{
-				var listForForeach = employee.ProjectWithWorkHours.ToList();
-				foreach (var projectWithWorkHours in listForForeach)
-				{
-					if (projectWithWorkHours.Project.Name == SelectedProject.Name)
-						employee.ProjectWithWorkHours.Remove(projectWithWorkHours);
-				}
+				var errorForm = new ErrorForm(result);
+				errorForm.ShowDialog();
+				return;
 			}
-
-
-			foreach (var employeeWithWorkHours in employeesToAdd)
-			{
-				var project1 = new ProjectWithWorkHours();
-				project1.Project = SelectedProject;
-				project1.WorkHours = employeeWithWorkHours.WorkHours;
-				employeeWithWorkHours.Employee.ProjectWithWorkHours.Add(project1);
-			}
-
 
 			Close();
 		}
@@ -178,7 +140,7 @@ namespace Employees
 			addEmployeeToProjectButton.Hide();
 		}
 
-		private void AddEmployeeToProjectComboBoxClick(object sender, EventArgs e)
+		private void ShowAddButton(object sender, EventArgs e)
 		{
 			addEmployeeToProjectButton.Show();
 		}

@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClassLibrary1.Models;
 using Employees.Domain.Repositories;
@@ -86,7 +80,6 @@ namespace Employees
 			Project.Name = newProjectNameTextBox.Text;
 			Project.StartDate = newProjectStartDateDatePicker.Value;
 			Project.EndDate = newProjectEndDateDatePicker.Value;
-			Project.EmployeeWithWorkHours = EmployeeWithWorkHoursList;
 			if (string.IsNullOrEmpty(Project.Name))
 			{
 				var errorForm = new ErrorForm("Please fill all boxes.");
@@ -94,35 +87,14 @@ namespace Employees
 				return;
 			}
 
-			if (!Project.IsEndDateAfterStartDate())
+			var result = ProjectRepository.Add(Project, EmployeeRepository, EmployeeWithWorkHoursList);
+			if (result != null)
 			{
-				var errorForm = new ErrorForm("Project End date is not valid, it must be after start date. Try again.");
+				var errorForm = new ErrorForm(result);
 				errorForm.ShowDialog();
 				return;
 			}
 
-			if (!ProjectRepository.CreateProject(Project))
-			{
-				var errorForm = new ErrorForm("There is already a project with that name.");
-				errorForm.ShowDialog();
-				return;
-			}
-
-			ProjectRepository.Projects.Add(Project);
-
-			foreach (var employee in EmployeeRepository.Employees)
-			{
-				foreach (var employeeWithWorkHours in EmployeeWithWorkHoursList)
-				{
-					if (employeeWithWorkHours.Employee.Oib == employee.Oib)
-					{
-						var projectWithWorkHours = new ProjectWithWorkHours();
-						projectWithWorkHours.Project = Project;
-						projectWithWorkHours.WorkHours = employeeWithWorkHours.WorkHours;
-						employee.ProjectWithWorkHours.Add(projectWithWorkHours);
-					}
-				}
-			}
 
 			Close();
 		}

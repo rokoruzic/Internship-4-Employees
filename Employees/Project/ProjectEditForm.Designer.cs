@@ -69,7 +69,7 @@
 			this.addEmployeeToProjectComboBox.Name = "addEmployeeToProjectComboBox";
 			this.addEmployeeToProjectComboBox.Size = new System.Drawing.Size(230, 24);
 			this.addEmployeeToProjectComboBox.TabIndex = 8;
-			this.addEmployeeToProjectComboBox.Click += new System.EventHandler(this.AddEmployeeToProjectComboBoxClick);
+			this.addEmployeeToProjectComboBox.SelectedIndexChanged += new System.EventHandler(this.ShowAddButton);
 			// 
 			// removeEmployeeFromProjectComboBox
 			// 

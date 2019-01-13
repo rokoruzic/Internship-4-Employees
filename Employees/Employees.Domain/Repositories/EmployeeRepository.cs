@@ -72,12 +72,11 @@ namespace Employees.Domain.Repositories
 					{
 						if (project.EmployeeWithWorkHours.Count == 1)
 						{
-							return	"You can't delete this employee because project has only this selected employee";
+							return "You can't delete this employee because project has only this selected employee";
 						}
 						else
 						{
 							employeeToDelete.ProjectWithWorkHours.Remove(projectWithWorkHours);
-
 							foreach (var employeeWithWorkHours in project.EmployeeWithWorkHours)
 							{
 								if (employeeWithWorkHours.Employee.Oib == employeeToDelete.Oib)
@@ -87,14 +86,50 @@ namespace Employees.Domain.Repositories
 								}
 							}
 						}
-
 					}
 				}
 			}
+
 			Employees.Remove(employeeToDelete);
+			return null;
+		}
+
+		public string Edit(Employee employeeToEdit, ProjectRepository projectRepository,
+			List<ProjectWithWorkHours> projectWithWorkHours)
+		{
+			var projectsToAdd = employeeToEdit.ProjectWithWorkHours;
+			foreach (var project in projectRepository.Projects)
+			{
+				foreach (var employeeWithWorkHours in project.EmployeeWithWorkHours.ToList())
+				{
+					if (employeeWithWorkHours.Employee.Oib == employeeToEdit.Oib)
+					{
+						var willBeAddedInTheFuture = false;
+						foreach (var projectItem in projectWithWorkHours)
+						{
+							if (projectItem.Project.Name == project.Name) willBeAddedInTheFuture = true;
+						}
+
+						if (project.EmployeeWithWorkHours.Count == 1 && !willBeAddedInTheFuture)
+						{
+							return "There must be at least one employee in project.";
+						}
+
+						project.EmployeeWithWorkHours.Remove(employeeWithWorkHours);
+					}
+				}
+			}
+
+			employeeToEdit.ProjectWithWorkHours = projectWithWorkHours;
+			foreach (var projectWithWorkHoursItem in projectsToAdd)
+			{
+				var employee1 = new EmployeeWithWorkHours();
+				employee1.Employee = employeeToEdit;
+				employee1.WorkHours = projectWithWorkHoursItem.WorkHours;
+				projectWithWorkHoursItem.Project.EmployeeWithWorkHours.Add(employee1);
+			}
 
 			return null;
 		}
-	
-}
+	}
 }

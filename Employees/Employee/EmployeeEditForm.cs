@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClassLibrary1.Enums;
 using ClassLibrary1.Models;
@@ -32,7 +26,6 @@ namespace Employees
 			}
 
 			employeeEditDateTimePicker.MaxDate = DateTime.Now.AddYears(-18);
-			if (addProjectToEmployeeComboBox.SelectedItem == null)
 				addProjectToNewEmployeeButton.Hide();
 		}
 
@@ -46,7 +39,6 @@ namespace Employees
 
 		public void RefreshList()
 		{
-		
 			bool isFound;
 			foreach (var project in ProjectRepository.Projects)
 			{
@@ -82,49 +74,19 @@ namespace Employees
 			}
 
 			SelectedItem.WorkPosition = (WorkPosition) employeeEditWorkPositionComboBox.SelectedItem;
-			
 
-			var projectsToAdd = SelectedItem.ProjectWithWorkHours;
-			foreach (var project in ProjectRepository.Projects)
-			{
-				foreach (var employeeWithWorkHours in project.EmployeeWithWorkHours.ToList())
-				{
-
-					if (employeeWithWorkHours.Employee.Oib == SelectedItem.Oib )
-					{
-						var willBeAddedInTheFuture = false;
-						foreach (var projectItem in RemoveProjectFromEmployeeComboBox.Items)
-						{
-							var projectItem1 = projectItem as ProjectWithWorkHours;
-							if (projectItem1.Project.Name == project.Name)
-								willBeAddedInTheFuture = true;
-						}
-						if (project.EmployeeWithWorkHours.Count == 1  && !willBeAddedInTheFuture )
-						{
-							var errorForm = new ErrorForm("There must be at least one employee in project.");
-							errorForm.ShowDialog();
-							return;
-						}
-
-						project.EmployeeWithWorkHours.Remove(employeeWithWorkHours);
-					}
-				}
-
-			}
-			SelectedItem.ProjectWithWorkHours = new List<ProjectWithWorkHours>();
-
+			var removeComboBoxProjects = new List<ProjectWithWorkHours>();
 			foreach (var projectWithWorkHoursItem in RemoveProjectFromEmployeeComboBox.Items)
 			{
-				SelectedItem.ProjectWithWorkHours.Add(projectWithWorkHoursItem as ProjectWithWorkHours);
+				removeComboBoxProjects.Add(projectWithWorkHoursItem as ProjectWithWorkHours);
 			}
 
-
-			foreach (var projectWithWorkHours in projectsToAdd)
+			var result = EmployeeRepository.Edit(SelectedItem, ProjectRepository, removeComboBoxProjects);
+			if (result != null)
 			{
-				var employee1 = new EmployeeWithWorkHours();
-				employee1.Employee = SelectedItem;
-				employee1.WorkHours = projectWithWorkHours.WorkHours;
-				projectWithWorkHours.Project.EmployeeWithWorkHours.Add(employee1);
+				var errorForm = new ErrorForm(result);
+				errorForm.ShowDialog();
+				return;
 			}
 
 			Close();
@@ -145,9 +107,7 @@ namespace Employees
 				errorForm.ShowDialog();
 				return;
 			}
-			
-			
-			
+
 
 			var projectWithWorkHours = new ProjectWithWorkHours();
 			projectWithWorkHours.WorkHours = (int) workHoursNumericUpDown.Value;
@@ -182,7 +142,7 @@ namespace Employees
 			addProjectToEmployeeComboBox.ResetText();
 		}
 
-		private void AddProjectToEmployeeComboBox_Click(object sender, EventArgs e)
+		private void addProjectToEmployeeComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			addProjectToNewEmployeeButton.Show();
 		}
