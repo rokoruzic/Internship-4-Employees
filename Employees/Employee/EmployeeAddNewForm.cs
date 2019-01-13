@@ -55,37 +55,14 @@ namespace Employees
 
 			var employee = new Employee(firstNameAddNewTextbox.Text, lastNameAddNewTextbox.Text, oibAddNewTextbox.Text,
 				(WorkPosition) workPositionAddNewComboBox.SelectedItem, dateOfBirthAddNewDateTimePicker.Value);
-			employee.ProjectWithWorkHours = ProjectWithWorkHoursList;
-			if (!EmployeeRepository.Create(employee))
+
+			var result =EmployeeRepository.Add(employee, ProjectRepository, ProjectWithWorkHoursList);
+			if (result != null)
 			{
-				var errorForm = new ErrorForm("That oib is already added.");
+				var errorForm = new ErrorForm(result);
 				errorForm.ShowDialog();
 				return;
 			}
-
-			if (!employee.IsOibValid())
-			{
-				var errorForm = new ErrorForm("Oib contains letters and doesn't have 11 characters.");
-				errorForm.ShowDialog();
-				return;
-			}
-
-			EmployeeRepository.Employees.Add(employee);
-
-			foreach (var project in ProjectRepository.Projects)
-			{
-				foreach (var projectWithWorkHours in ProjectWithWorkHoursList)
-				{
-					if (projectWithWorkHours.Project.Name == project.Name)
-					{
-						var employeeWithWorkHours1 = new EmployeeWithWorkHours();
-						employeeWithWorkHours1.Employee = employee;
-						employeeWithWorkHours1.WorkHours = projectWithWorkHours.WorkHours;
-						project.EmployeeWithWorkHours.Add(employeeWithWorkHours1);
-					}
-				}
-			}
-
 			Close();
 		}
 

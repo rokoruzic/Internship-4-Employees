@@ -17,12 +17,15 @@ namespace Employees
 		public Employee SelectedItem { get; set; }
 		public ProjectWithWorkHours ProjectWithWorkHours;
 		public ProjectRepository ProjectRepository;
-		public EmployeeRepository EmployeeRepository;
+		public EmployeeRepository EmployeeRepository { get; set; }
 
-		public EmployeeDetailsForm(ProjectRepository projectRepository, EmployeeRepository employeeRepository)
+		public EmployeeDetailsForm(ProjectRepository projectRepository,EmployeeRepository employeeRepository)
 		{
 			InitializeComponent();
 			ProjectWithWorkHours = new ProjectWithWorkHours();
+
+			ProjectRepository = projectRepository;
+			EmployeeRepository = employeeRepository;
 		}
 
 		public void SetText()
@@ -55,7 +58,7 @@ namespace Employees
 			if (selectedEmployee == null) return;
 			Close();
 
-			var employeeEditForm = new EmployeeEditForm(ProjectRepository, EmployeeRepository) {SelectedItem = selectedEmployee};
+			var employeeEditForm = new EmployeeEditForm(ProjectRepository,EmployeeRepository) {SelectedItem = selectedEmployee};
 			employeeEditForm.EditedEmployeeSetText();
 			employeeEditForm.RefreshList();
 

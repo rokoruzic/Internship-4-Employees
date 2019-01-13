@@ -46,6 +46,7 @@ namespace Employees
 
 		public void RefreshList()
 		{
+		
 			bool isFound;
 			foreach (var project in ProjectRepository.Projects)
 			{
@@ -71,21 +72,61 @@ namespace Employees
 			SelectedItem.FirstName = employeeEditFirstNameTextBox.Text;
 			SelectedItem.LastName = employeeLastNameEditTextBox.Text;
 			SelectedItem.DateOfBirth = employeeEditDateTimePicker.Value;
-			SelectedItem.WorkPosition = (WorkPosition)employeeEditWorkPositionComboBox.SelectedItem;
-
-			var listOfProjectWithHoursToAdd = new List<ProjectWithWorkHours>();
-			foreach (var projectWithWorkHoursItem in RemoveProjectFromEmployeeComboBox.Items)
+			if (string.IsNullOrEmpty(SelectedItem.FirstName) || string.IsNullOrEmpty(SelectedItem.LastName)
+			                                                 || string.IsNullOrEmpty(SelectedItem.Oib)
+			)
 			{
-				listOfProjectWithHoursToAdd.Add(projectWithWorkHoursItem as ProjectWithWorkHours);
-			}
-
-			var errorMessage = EmployeeRepository.Edit(SelectedItem, listOfProjectWithHoursToAdd, ProjectRepository);
-			if (errorMessage != null)
-			{
-				var errorForm = new ErrorForm(errorMessage);
+				var errorForm = new ErrorForm("Please fill all boxes.");
 				errorForm.ShowDialog();
 				return;
 			}
+
+			SelectedItem.WorkPosition = (WorkPosition) employeeEditWorkPositionComboBox.SelectedItem;
+			
+
+			var projectsToAdd = SelectedItem.ProjectWithWorkHours;
+			foreach (var project in ProjectRepository.Projects)
+			{
+				foreach (var employeeWithWorkHours in project.EmployeeWithWorkHours.ToList())
+				{
+
+					if (employeeWithWorkHours.Employee.Oib == SelectedItem.Oib )
+					{
+						var willBeAddedInTheFuture = false;
+						foreach (var projectItem in RemoveProjectFromEmployeeComboBox.Items)
+						{
+							var projectItem1 = projectItem as ProjectWithWorkHours;
+							if (projectItem1.Project.Name == project.Name)
+								willBeAddedInTheFuture = true;
+						}
+						if (project.EmployeeWithWorkHours.Count == 1  && !willBeAddedInTheFuture )
+						{
+							var errorForm = new ErrorForm("There must be at least one employee in project.");
+							errorForm.ShowDialog();
+							return;
+						}
+
+						project.EmployeeWithWorkHours.Remove(employeeWithWorkHours);
+					}
+				}
+
+			}
+			SelectedItem.ProjectWithWorkHours = new List<ProjectWithWorkHours>();
+
+			foreach (var projectWithWorkHoursItem in RemoveProjectFromEmployeeComboBox.Items)
+			{
+				SelectedItem.ProjectWithWorkHours.Add(projectWithWorkHoursItem as ProjectWithWorkHours);
+			}
+
+
+			foreach (var projectWithWorkHours in projectsToAdd)
+			{
+				var employee1 = new EmployeeWithWorkHours();
+				employee1.Employee = SelectedItem;
+				employee1.WorkHours = projectWithWorkHours.WorkHours;
+				projectWithWorkHours.Project.EmployeeWithWorkHours.Add(employee1);
+			}
+
 			Close();
 		}
 

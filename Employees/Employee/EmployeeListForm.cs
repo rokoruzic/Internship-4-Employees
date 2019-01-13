@@ -40,7 +40,8 @@ namespace Employees
 				return;
 			}
 
-			var employeeEditForm = new EmployeeEditForm(ProjectRepository, EmployeeRepository) {SelectedItem = selectedEmployee};
+			var employeeEditForm = new EmployeeEditForm(ProjectRepository, EmployeeRepository)
+				{SelectedItem = selectedEmployee};
 
 			employeeEditForm.EditedEmployeeSetText();
 			employeeEditForm.RefreshList();
@@ -60,8 +61,8 @@ namespace Employees
 		private void EmployeeDeleteClick(object sender, EventArgs e)
 		{
 			var selectedEmployee = employeesListBox.SelectedItem as Employee;
-			
-			
+
+
 			if (selectedEmployee == null)
 			{
 				var errorForm = new ErrorForm("You must select employee to delete");
@@ -69,44 +70,14 @@ namespace Employees
 				return;
 			}
 
-			foreach (var project in ProjectRepository.Projects)
+			var result = EmployeeRepository.Delete(selectedEmployee, ProjectRepository);
+			if (result != null)
 			{
-				foreach (var projectWithWorkHours in selectedEmployee.ProjectWithWorkHours.ToList())
-				{
-					if (project.Name == projectWithWorkHours.Project.Name)
-					{
-						if (project.EmployeeWithWorkHours.Count == 1)
-						{
-							
-							var errorForm =
-								new ErrorForm(
-									"You can't delete this employee because project has only this selected employee");
-							errorForm.ShowDialog();
-							return;
-						}
-						else
-						{
-							selectedEmployee.ProjectWithWorkHours.Remove(projectWithWorkHours);
-							
-							foreach (var employeeWithWorkHours in project.EmployeeWithWorkHours)
-							{
-								if (employeeWithWorkHours.Employee.Oib == selectedEmployee.Oib)
-								{
-									project.EmployeeWithWorkHours.Remove(employeeWithWorkHours);
-									break;
-								}
-							}
-						}
-
-						
-					}
-				}
-				
+				var errorForm = new ErrorForm(result);
+				errorForm.ShowDialog();
+				return;
 			}
 
-			EmployeeRepository.Employees.Remove(selectedEmployee);
-			
-			
 			AddRefreshList();
 		}
 
@@ -128,7 +99,8 @@ namespace Employees
 				return;
 			}
 
-			var employeeDetailsForm = new EmployeeDetailsForm(ProjectRepository, EmployeeRepository){SelectedItem = selectedEmployee};
+			var employeeDetailsForm = new EmployeeDetailsForm(ProjectRepository, EmployeeRepository)
+				{SelectedItem = selectedEmployee};
 			employeeDetailsForm.SetText();
 			employeeDetailsForm.ShowDialog();
 		}

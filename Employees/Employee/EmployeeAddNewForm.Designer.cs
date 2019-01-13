@@ -43,7 +43,7 @@
 			// 
 			// firstNameAddNewTextbox
 			// 
-			this.firstNameAddNewTextbox.Location = new System.Drawing.Point(83, 45);
+			this.firstNameAddNewTextbox.Location = new System.Drawing.Point(83, 47);
 			this.firstNameAddNewTextbox.Name = "firstNameAddNewTextbox";
 			this.firstNameAddNewTextbox.Size = new System.Drawing.Size(195, 22);
 			this.firstNameAddNewTextbox.TabIndex = 0;

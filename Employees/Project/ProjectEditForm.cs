@@ -70,7 +70,7 @@ namespace Employees
 
 			if (removeEmployeeFromProjectComboBox.Items.Count == 0)
 			{
-				var errorForm = new ErrorForm("There must be atleast one employee in project.");
+				var errorForm = new ErrorForm("There must be at least one employee in project.");
 				errorForm.ShowDialog();
 				return;
 			}

@@ -62,19 +62,7 @@ namespace Employees
 				errorForm.ShowDialog();
 				return;
 			}
-
-			ProjectRepository.Projects.Remove(selectedProject);
-
-
-			foreach (var employee in EmployeeRepository.Employees)
-			{
-				var listForForeach = employee.ProjectWithWorkHours.ToList();
-				foreach (var project in listForForeach)
-				{
-					employee.ProjectWithWorkHours.Remove(project);
-				}
-			}
-
+			ProjectRepository.Delete(selectedProject, EmployeeRepository);
 			AddRefreshList();
 		}
 

@@ -22,7 +22,7 @@ namespace Employees.Domain.Repositories
 			};
 		}
 
-		public bool Create(Employee employeeToAdd)
+		public bool IsEmployeeValid(Employee employeeToAdd)
 		{
 			foreach (var employee in Employees)
 				if (employee.Oib == employeeToAdd.Oib || employeeToAdd.DateOfBirth.AddYears(18) > DateTime.Now)
@@ -30,25 +30,71 @@ namespace Employees.Domain.Repositories
 			return true;
 		}
 
-		public string Edit(Employee employeeToEdit, List<ProjectWithWorkHours> projectWithWorkhoursToAdd, ProjectRepository projectRepository)
+		public string Add(Employee employeeToAdd, ProjectRepository projectRepository,
+			List<ProjectWithWorkHours> projectWithWorkHours)
 		{
-			if (string.IsNullOrEmpty(employeeToEdit.FirstName) 
-			    || string.IsNullOrEmpty(employeeToEdit.LastName)
-			    || string.IsNullOrEmpty(employeeToEdit.Oib)
-			)
+			employeeToAdd.ProjectWithWorkHours = projectWithWorkHours;
+			if (!IsEmployeeValid(employeeToAdd))
 			{
-				return "Please fill all boxes.";
+				return "That oib is already added.";
 			}
 
-			var result = projectRepository.AddEmployeeWithWorkHours(employeeToEdit, projectWithWorkhoursToAdd);
-			if (result != null) return result;
+			if (!employeeToAdd.IsOibValid())
+			{
+				return ("Oib contains letters and doesn't have 11 characters.");
+			}
 
-			employeeToEdit.ProjectWithWorkHours = new List<ProjectWithWorkHours>();
+			Employees.Add(employeeToAdd);
+			foreach (var project in projectRepository.Projects)
+			{
+				foreach (var projectWithWorkHoursItem in projectWithWorkHours)
+				{
+					if (projectWithWorkHoursItem.Project.Name == project.Name)
+					{
+						var employeeWithWorkHours1 = new EmployeeWithWorkHours();
+						employeeWithWorkHours1.Employee = employeeToAdd;
+						employeeWithWorkHours1.WorkHours = projectWithWorkHoursItem.WorkHours;
+						project.EmployeeWithWorkHours.Add(employeeWithWorkHours1);
+					}
+				}
+			}
 
-			foreach (var projectWithWorkHoursItem in projectWithWorkhoursToAdd)
-				employeeToEdit.ProjectWithWorkHours.Add(projectWithWorkHoursItem);
-			
 			return null;
 		}
-	}
+
+		public string Delete(Employee employeeToDelete, ProjectRepository projectRepository)
+		{
+			foreach (var project in projectRepository.Projects)
+			{
+				foreach (var projectWithWorkHours in employeeToDelete.ProjectWithWorkHours.ToList())
+				{
+					if (project.Name == projectWithWorkHours.Project.Name)
+					{
+						if (project.EmployeeWithWorkHours.Count == 1)
+						{
+							return	"You can't delete this employee because project has only this selected employee";
+						}
+						else
+						{
+							employeeToDelete.ProjectWithWorkHours.Remove(projectWithWorkHours);
+
+							foreach (var employeeWithWorkHours in project.EmployeeWithWorkHours)
+							{
+								if (employeeWithWorkHours.Employee.Oib == employeeToDelete.Oib)
+								{
+									project.EmployeeWithWorkHours.Remove(employeeWithWorkHours);
+									break;
+								}
+							}
+						}
+
+					}
+				}
+			}
+			Employees.Remove(employeeToDelete);
+
+			return null;
+		}
+	
+}
 }
