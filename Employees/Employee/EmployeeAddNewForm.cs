@@ -26,6 +26,7 @@ namespace Employees
 			EmployeeRepository = employeeRepository;
 			ProjectRepository = projectRepository;
 			ProjectWithWorkHoursList = new List<ProjectWithWorkHours>();
+			addProjectToNewEmployeeButton.Hide();
 
 			foreach (var workPosition in (WorkPosition[]) Enum.GetValues(typeof(WorkPosition)))
 			{
@@ -89,6 +90,15 @@ namespace Employees
 			ProjectWithWorkHoursList.Add(projectWithWorkHours);
 			projectAddNewComboBox.Items.Remove(projectToRemove);
 			projectAddNewComboBox.ResetText();
+			addWorkHoursToProjectToNewEmployeeNumUpDown.ResetText();
+			addProjectToNewEmployeeButton.Hide();
+
+		}
+
+		private void ProjectAddNewSelectItem(object sender, EventArgs e)
+		{
+			addProjectToNewEmployeeButton.Show();
+
 		}
 	}
 }

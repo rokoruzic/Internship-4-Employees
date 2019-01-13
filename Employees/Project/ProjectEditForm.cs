@@ -18,7 +18,7 @@ namespace Employees
 			InitializeComponent();
 			EmployeeRepository = employeeRepository;
 			ProjectRepository = projectRepository;
-			if (addEmployeeToProjectComboBox.SelectedItem == null) addEmployeeToProjectButton.Hide();
+			addEmployeeToProjectButton.Hide();
 		}
 
 		public void SetText()
@@ -138,6 +138,7 @@ namespace Employees
 
 			addEmployeeToProjectComboBox.ResetText();
 			addEmployeeToProjectButton.Hide();
+			employeeAddWorkHoursNumUpDown.ResetText();
 		}
 
 		private void ShowAddButton(object sender, EventArgs e)

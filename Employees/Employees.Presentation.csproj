@@ -108,6 +108,12 @@
       <DependentUpon>ProjectListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Warnings\EmployeeDeleteWarningForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warnings\EmployeeDeleteWarningForm.Designer.cs">
+      <DependentUpon>EmployeeDeleteWarningForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Employee\EmployeeAddNewForm.resx">
       <DependentUpon>EmployeeAddNewForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,6 +153,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Warnings\EmployeeDeleteWarningForm.resx">
+      <DependentUpon>EmployeeDeleteWarningForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

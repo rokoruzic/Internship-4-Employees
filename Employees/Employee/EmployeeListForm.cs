@@ -1,23 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using ClassLibrary1.Models;
 using Employees.Domain.Repositories;
 using Employees.Errors;
+using Employees.Warnings;
 
 namespace Employees
 {
 	public partial class EmployeeListForm : Form
 	{
-		public EmployeeRepository EmployeeRepository;
-		public ProjectRepository ProjectRepository;
+		public EmployeeRepository EmployeeRepository { get; set; }
+		public ProjectRepository ProjectRepository { get; set; }
 
 		public EmployeeListForm(EmployeeRepository employeeRepository, ProjectRepository projectRepository)
 		{
@@ -41,7 +34,7 @@ namespace Employees
 			}
 
 			var employeeEditForm = new EmployeeEditForm(ProjectRepository, EmployeeRepository)
-				{SelectedItem = selectedEmployee};
+				{SelectedEmployee = selectedEmployee};
 
 			employeeEditForm.EditedEmployeeSetText();
 			employeeEditForm.RefreshList();
@@ -70,6 +63,8 @@ namespace Employees
 				return;
 			}
 
+			var employeeDeleteWarningForm = new EmployeeDeleteWarningForm(EmployeeRepository, ProjectRepository){SelectedEmployee = selectedEmployee};
+			employeeDeleteWarningForm.ShowDialog();
 			var result = EmployeeRepository.Delete(selectedEmployee, ProjectRepository);
 			if (result != null)
 			{

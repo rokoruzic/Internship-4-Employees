@@ -36,30 +36,35 @@
 			this.employeeAddWorkHoursNumUpDown = new System.Windows.Forms.NumericUpDown();
 			this.addEmployeeToProjectButton = new System.Windows.Forms.Button();
 			this.removeEmployeeFromProjectButton = new System.Windows.Forms.Button();
-			this.weeklyWorkHoursLabel = new System.Windows.Forms.Label();
 			this.projectEditSaveButton = new System.Windows.Forms.Button();
+			this.projectNameLabel = new System.Windows.Forms.Label();
+			this.projectStartDateLabel = new System.Windows.Forms.Label();
+			this.projectEndDateLabel = new System.Windows.Forms.Label();
+			this.addEmployeeLabel = new System.Windows.Forms.Label();
+			this.addWorkHoursLabel = new System.Windows.Forms.Label();
+			this.selectEmployeeToDeleteLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.employeeAddWorkHoursNumUpDown)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// projectNameTextBox
 			// 
-			this.projectNameTextBox.Location = new System.Drawing.Point(49, 45);
+			this.projectNameTextBox.Location = new System.Drawing.Point(40, 63);
 			this.projectNameTextBox.Name = "projectNameTextBox";
-			this.projectNameTextBox.Size = new System.Drawing.Size(265, 22);
+			this.projectNameTextBox.Size = new System.Drawing.Size(189, 22);
 			this.projectNameTextBox.TabIndex = 0;
 			// 
 			// projectStartDateDatePicker
 			// 
-			this.projectStartDateDatePicker.Location = new System.Drawing.Point(49, 124);
+			this.projectStartDateDatePicker.Location = new System.Drawing.Point(40, 125);
 			this.projectStartDateDatePicker.Name = "projectStartDateDatePicker";
-			this.projectStartDateDatePicker.Size = new System.Drawing.Size(256, 22);
+			this.projectStartDateDatePicker.Size = new System.Drawing.Size(326, 22);
 			this.projectStartDateDatePicker.TabIndex = 1;
 			// 
 			// projectEndDateDatePicker
 			// 
-			this.projectEndDateDatePicker.Location = new System.Drawing.Point(49, 198);
+			this.projectEndDateDatePicker.Location = new System.Drawing.Point(40, 199);
 			this.projectEndDateDatePicker.Name = "projectEndDateDatePicker";
-			this.projectEndDateDatePicker.Size = new System.Drawing.Size(256, 22);
+			this.projectEndDateDatePicker.Size = new System.Drawing.Size(326, 22);
 			this.projectEndDateDatePicker.TabIndex = 2;
 			// 
 			// addEmployeeToProjectComboBox
@@ -106,16 +111,6 @@
 			this.removeEmployeeFromProjectButton.UseVisualStyleBackColor = true;
 			this.removeEmployeeFromProjectButton.Click += new System.EventHandler(this.RemoveEmployeeFromProjectClick);
 			// 
-			// weeklyWorkHoursLabel
-			// 
-			this.weeklyWorkHoursLabel.AutoSize = true;
-			this.weeklyWorkHoursLabel.Enabled = false;
-			this.weeklyWorkHoursLabel.Location = new System.Drawing.Point(495, 68);
-			this.weeklyWorkHoursLabel.Name = "weeklyWorkHoursLabel";
-			this.weeklyWorkHoursLabel.Size = new System.Drawing.Size(161, 17);
-			this.weeklyWorkHoursLabel.TabIndex = 6;
-			this.weeklyWorkHoursLabel.Text = "Type work hours below.:";
-			// 
 			// projectEditSaveButton
 			// 
 			this.projectEditSaveButton.Location = new System.Drawing.Point(362, 376);
@@ -126,18 +121,77 @@
 			this.projectEditSaveButton.UseVisualStyleBackColor = true;
 			this.projectEditSaveButton.Click += new System.EventHandler(this.ProjectEditSaveClick);
 			// 
+			// projectNameLabel
+			// 
+			this.projectNameLabel.AutoSize = true;
+			this.projectNameLabel.Location = new System.Drawing.Point(37, 26);
+			this.projectNameLabel.Name = "projectNameLabel";
+			this.projectNameLabel.Size = new System.Drawing.Size(91, 17);
+			this.projectNameLabel.TabIndex = 14;
+			this.projectNameLabel.Text = "Project name";
+			// 
+			// projectStartDateLabel
+			// 
+			this.projectStartDateLabel.AutoSize = true;
+			this.projectStartDateLabel.Location = new System.Drawing.Point(37, 97);
+			this.projectStartDateLabel.Name = "projectStartDateLabel";
+			this.projectStartDateLabel.Size = new System.Drawing.Size(116, 17);
+			this.projectStartDateLabel.TabIndex = 15;
+			this.projectStartDateLabel.Text = "Project start date";
+			// 
+			// projectEndDateLabel
+			// 
+			this.projectEndDateLabel.AutoSize = true;
+			this.projectEndDateLabel.Location = new System.Drawing.Point(41, 170);
+			this.projectEndDateLabel.Name = "projectEndDateLabel";
+			this.projectEndDateLabel.Size = new System.Drawing.Size(112, 17);
+			this.projectEndDateLabel.TabIndex = 16;
+			this.projectEndDateLabel.Text = "Project end date";
+			// 
+			// addEmployeeLabel
+			// 
+			this.addEmployeeLabel.AutoSize = true;
+			this.addEmployeeLabel.Location = new System.Drawing.Point(495, 21);
+			this.addEmployeeLabel.Name = "addEmployeeLabel";
+			this.addEmployeeLabel.Size = new System.Drawing.Size(156, 17);
+			this.addEmployeeLabel.TabIndex = 17;
+			this.addEmployeeLabel.Text = "Select employee to add";
+			// 
+			// addWorkHoursLabel
+			// 
+			this.addWorkHoursLabel.AutoSize = true;
+			this.addWorkHoursLabel.Location = new System.Drawing.Point(495, 74);
+			this.addWorkHoursLabel.Name = "addWorkHoursLabel";
+			this.addWorkHoursLabel.Size = new System.Drawing.Size(106, 17);
+			this.addWorkHoursLabel.TabIndex = 18;
+			this.addWorkHoursLabel.Text = "Add work hours";
+			// 
+			// selectEmployeeToDeleteLabel
+			// 
+			this.selectEmployeeToDeleteLabel.AutoSize = true;
+			this.selectEmployeeToDeleteLabel.Location = new System.Drawing.Point(498, 131);
+			this.selectEmployeeToDeleteLabel.Name = "selectEmployeeToDeleteLabel";
+			this.selectEmployeeToDeleteLabel.Size = new System.Drawing.Size(175, 17);
+			this.selectEmployeeToDeleteLabel.TabIndex = 19;
+			this.selectEmployeeToDeleteLabel.Text = "Select employee do delete";
+			// 
 			// ProjectEditForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.selectEmployeeToDeleteLabel);
+			this.Controls.Add(this.addWorkHoursLabel);
+			this.Controls.Add(this.addEmployeeLabel);
+			this.Controls.Add(this.projectEndDateLabel);
+			this.Controls.Add(this.projectStartDateLabel);
+			this.Controls.Add(this.projectNameLabel);
 			this.Controls.Add(this.projectEditSaveButton);
 			this.Controls.Add(this.removeEmployeeFromProjectButton);
 			this.Controls.Add(this.addEmployeeToProjectButton);
 			this.Controls.Add(this.employeeAddWorkHoursNumUpDown);
 			this.Controls.Add(this.removeEmployeeFromProjectComboBox);
 			this.Controls.Add(this.addEmployeeToProjectComboBox);
-			this.Controls.Add(this.weeklyWorkHoursLabel);
 			this.Controls.Add(this.projectEndDateDatePicker);
 			this.Controls.Add(this.projectStartDateDatePicker);
 			this.Controls.Add(this.projectNameTextBox);
@@ -159,7 +213,12 @@
 		private System.Windows.Forms.NumericUpDown employeeAddWorkHoursNumUpDown;
 		private System.Windows.Forms.Button addEmployeeToProjectButton;
 		private System.Windows.Forms.Button removeEmployeeFromProjectButton;
-		private System.Windows.Forms.Label weeklyWorkHoursLabel;
 		private System.Windows.Forms.Button projectEditSaveButton;
+		private System.Windows.Forms.Label projectNameLabel;
+		private System.Windows.Forms.Label projectStartDateLabel;
+		private System.Windows.Forms.Label projectEndDateLabel;
+		private System.Windows.Forms.Label addEmployeeLabel;
+		private System.Windows.Forms.Label addWorkHoursLabel;
+		private System.Windows.Forms.Label selectEmployeeToDeleteLabel;
 	}
 }

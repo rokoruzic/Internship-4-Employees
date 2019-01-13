@@ -7,12 +7,12 @@ namespace Employees.Infrastructure.Extensions
 	{
 		public static string CapitalizeFirstLetterAndRemoveMultipleWhiteSpaces(this string text)
 		{
-			text = PrepareTextForUppercasing(text);
+			text = PrepareTextForUpperCasing(text);
 			text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text);
 			return text;
 		}
 
-		private static string PrepareTextForUppercasing(string text)
+		private static string PrepareTextForUpperCasing(string text)
 		{
 			if (string.IsNullOrEmpty(text))
 				return text;
@@ -32,7 +32,7 @@ namespace Employees.Infrastructure.Extensions
 
 		public static string FirstCharToUpperAndRemoveMultipleWhiteSpaces(this string text)
 		{
-			text = PrepareTextForUppercasing(text);
+			text = PrepareTextForUpperCasing(text);
 			text = char.ToUpper(text[0]) + text.Substring(1);
 			return text;
 		}

@@ -39,19 +39,25 @@
 			this.addProjectToNewEmployeeButton = new System.Windows.Forms.Button();
 			this.workHoursNumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.employeeDeleteProjectButton = new System.Windows.Forms.Button();
+			this.firstNameLabel = new System.Windows.Forms.Label();
+			this.lastNameLabel = new System.Windows.Forms.Label();
+			this.oibLabel = new System.Windows.Forms.Label();
+			this.dateOfBirthLabel = new System.Windows.Forms.Label();
+			this.addProjectLabel = new System.Windows.Forms.Label();
+			this.deleteProjectLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.workHoursNumericUpDown)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// employeeEditFirstNameTextBox
 			// 
-			this.employeeEditFirstNameTextBox.Location = new System.Drawing.Point(86, 57);
+			this.employeeEditFirstNameTextBox.Location = new System.Drawing.Point(5, 57);
 			this.employeeEditFirstNameTextBox.Name = "employeeEditFirstNameTextBox";
 			this.employeeEditFirstNameTextBox.Size = new System.Drawing.Size(217, 22);
 			this.employeeEditFirstNameTextBox.TabIndex = 0;
 			// 
 			// employeeLastNameEditTextBox
 			// 
-			this.employeeLastNameEditTextBox.Location = new System.Drawing.Point(86, 118);
+			this.employeeLastNameEditTextBox.Location = new System.Drawing.Point(5, 117);
 			this.employeeLastNameEditTextBox.Name = "employeeLastNameEditTextBox";
 			this.employeeLastNameEditTextBox.Size = new System.Drawing.Size(217, 22);
 			this.employeeLastNameEditTextBox.TabIndex = 1;
@@ -59,16 +65,16 @@
 			// employeeEditWorkPositionComboBox
 			// 
 			this.employeeEditWorkPositionComboBox.FormattingEnabled = true;
-			this.employeeEditWorkPositionComboBox.Location = new System.Drawing.Point(86, 170);
+			this.employeeEditWorkPositionComboBox.Location = new System.Drawing.Point(5, 169);
 			this.employeeEditWorkPositionComboBox.Name = "employeeEditWorkPositionComboBox";
 			this.employeeEditWorkPositionComboBox.Size = new System.Drawing.Size(217, 24);
 			this.employeeEditWorkPositionComboBox.TabIndex = 4;
 			// 
 			// employeeEditDateTimePicker
 			// 
-			this.employeeEditDateTimePicker.Location = new System.Drawing.Point(27, 242);
+			this.employeeEditDateTimePicker.Location = new System.Drawing.Point(8, 241);
 			this.employeeEditDateTimePicker.Name = "employeeEditDateTimePicker";
-			this.employeeEditDateTimePicker.Size = new System.Drawing.Size(306, 22);
+			this.employeeEditDateTimePicker.Size = new System.Drawing.Size(374, 22);
 			this.employeeEditDateTimePicker.TabIndex = 5;
 			// 
 			// employeeEditSaveButton
@@ -134,11 +140,71 @@
 			this.employeeDeleteProjectButton.UseVisualStyleBackColor = true;
 			this.employeeDeleteProjectButton.Click += new System.EventHandler(this.EmployeeDeleteProjectClick);
 			// 
+			// firstNameLabel
+			// 
+			this.firstNameLabel.AutoSize = true;
+			this.firstNameLabel.Location = new System.Drawing.Point(5, 28);
+			this.firstNameLabel.Name = "firstNameLabel";
+			this.firstNameLabel.Size = new System.Drawing.Size(74, 17);
+			this.firstNameLabel.TabIndex = 15;
+			this.firstNameLabel.Text = "First name";
+			// 
+			// lastNameLabel
+			// 
+			this.lastNameLabel.AutoSize = true;
+			this.lastNameLabel.Location = new System.Drawing.Point(5, 97);
+			this.lastNameLabel.Name = "lastNameLabel";
+			this.lastNameLabel.Size = new System.Drawing.Size(74, 17);
+			this.lastNameLabel.TabIndex = 16;
+			this.lastNameLabel.Text = "Last name";
+			// 
+			// oibLabel
+			// 
+			this.oibLabel.AutoSize = true;
+			this.oibLabel.Location = new System.Drawing.Point(5, 149);
+			this.oibLabel.Name = "oibLabel";
+			this.oibLabel.Size = new System.Drawing.Size(30, 17);
+			this.oibLabel.TabIndex = 17;
+			this.oibLabel.Text = "Oib";
+			// 
+			// dateOfBirthLabel
+			// 
+			this.dateOfBirthLabel.AutoSize = true;
+			this.dateOfBirthLabel.Location = new System.Drawing.Point(5, 211);
+			this.dateOfBirthLabel.Name = "dateOfBirthLabel";
+			this.dateOfBirthLabel.Size = new System.Drawing.Size(86, 17);
+			this.dateOfBirthLabel.TabIndex = 18;
+			this.dateOfBirthLabel.Text = "Date of birth";
+			// 
+			// addProjectLabel
+			// 
+			this.addProjectLabel.AutoSize = true;
+			this.addProjectLabel.Location = new System.Drawing.Point(476, 28);
+			this.addProjectLabel.Name = "addProjectLabel";
+			this.addProjectLabel.Size = new System.Drawing.Size(138, 17);
+			this.addProjectLabel.TabIndex = 19;
+			this.addProjectLabel.Text = "Select project to add";
+			// 
+			// deleteProjectLabel
+			// 
+			this.deleteProjectLabel.AutoSize = true;
+			this.deleteProjectLabel.Location = new System.Drawing.Point(476, 172);
+			this.deleteProjectLabel.Name = "deleteProjectLabel";
+			this.deleteProjectLabel.Size = new System.Drawing.Size(153, 17);
+			this.deleteProjectLabel.TabIndex = 20;
+			this.deleteProjectLabel.Text = "Select project to delete";
+			// 
 			// EmployeeEditForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.deleteProjectLabel);
+			this.Controls.Add(this.addProjectLabel);
+			this.Controls.Add(this.dateOfBirthLabel);
+			this.Controls.Add(this.oibLabel);
+			this.Controls.Add(this.lastNameLabel);
+			this.Controls.Add(this.firstNameLabel);
 			this.Controls.Add(this.employeeDeleteProjectButton);
 			this.Controls.Add(this.workHoursNumericUpDown);
 			this.Controls.Add(this.addProjectToNewEmployeeButton);
@@ -171,5 +237,11 @@
 		private System.Windows.Forms.Button addProjectToNewEmployeeButton;
 		private System.Windows.Forms.NumericUpDown workHoursNumericUpDown;
 		private System.Windows.Forms.Button employeeDeleteProjectButton;
+		private System.Windows.Forms.Label firstNameLabel;
+		private System.Windows.Forms.Label lastNameLabel;
+		private System.Windows.Forms.Label oibLabel;
+		private System.Windows.Forms.Label dateOfBirthLabel;
+		private System.Windows.Forms.Label addProjectLabel;
+		private System.Windows.Forms.Label deleteProjectLabel;
 	}
 }

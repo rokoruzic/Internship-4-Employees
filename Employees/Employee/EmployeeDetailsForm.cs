@@ -15,8 +15,8 @@ namespace Employees
 	public partial class EmployeeDetailsForm : Form
 	{
 		public Employee SelectedItem { get; set; }
-		public ProjectWithWorkHours ProjectWithWorkHours;
-		public ProjectRepository ProjectRepository;
+		public ProjectWithWorkHours ProjectWithWorkHours{get; set; }
+		public ProjectRepository ProjectRepository { get; set; }
 		public EmployeeRepository EmployeeRepository { get; set; }
 
 		public EmployeeDetailsForm(ProjectRepository projectRepository,EmployeeRepository employeeRepository)
@@ -58,7 +58,7 @@ namespace Employees
 			if (selectedEmployee == null) return;
 			Close();
 
-			var employeeEditForm = new EmployeeEditForm(ProjectRepository,EmployeeRepository) {SelectedItem = selectedEmployee};
+			var employeeEditForm = new EmployeeEditForm(ProjectRepository,EmployeeRepository) {SelectedEmployee = selectedEmployee};
 			employeeEditForm.EditedEmployeeSetText();
 			employeeEditForm.RefreshList();
 

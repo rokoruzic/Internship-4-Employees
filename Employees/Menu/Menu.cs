@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClassLibrary1.Models;
 using Employees.Domain.Repositories;
@@ -24,12 +17,10 @@ namespace Employees
 			EmployeeRepository = new EmployeeRepository();
 			var firstEmployee = EmployeeRepository.Employees[0];
 			var firstProject = ProjectRepository.Projects[0];
-
 			var projectWithWorkHours = new ProjectWithWorkHours();
 			projectWithWorkHours.Project = firstProject;
 			projectWithWorkHours.WorkHours = 15;
 			firstEmployee.ProjectWithWorkHours.Add(projectWithWorkHours);
-
 			var employeeWithWorkHours = new EmployeeWithWorkHours();
 			employeeWithWorkHours.Employee = firstEmployee;
 			employeeWithWorkHours.WorkHours = 15;

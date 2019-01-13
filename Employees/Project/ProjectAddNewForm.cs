@@ -9,11 +9,11 @@ namespace Employees
 {
 	public partial class ProjectAddNewForm : Form
 	{
-		public ProjectRepository ProjectRepository;
-		public EmployeeRepository EmployeeRepository;
-		public List<EmployeeWithWorkHours> EmployeeWithWorkHoursList;
-		public List<ProjectWithWorkHours> ProjectWithWorkHoursList;
-		public Project Project;
+		public ProjectRepository ProjectRepository { get; set; }
+		public EmployeeRepository EmployeeRepository { get; set; }
+		public List<EmployeeWithWorkHours> EmployeeWithWorkHoursList { get; set; }
+		public List<ProjectWithWorkHours> ProjectWithWorkHoursList { get; set; }
+		public Project Project { get; set; }
 
 		public ProjectAddNewForm(ProjectRepository projectRepository, EmployeeRepository employeeRepository)
 		{
@@ -23,6 +23,8 @@ namespace Employees
 			EmployeeWithWorkHoursList = new List<EmployeeWithWorkHours>();
 			ProjectWithWorkHoursList = new List<ProjectWithWorkHours>();
 			Project = new Project("a", DateTime.Now, DateTime.Now.AddDays(1));
+			employeeAddToProjectButton.Hide();
+
 		}
 
 		public void AddRefreshList()
@@ -51,7 +53,6 @@ namespace Employees
 				return;
 			}
 
-			;
 			if (projectSelectEmployeesComboBox.SelectedItem == null)
 			{
 				var errorForm = new ErrorForm("You need to select item before clicking add.");
@@ -66,6 +67,8 @@ namespace Employees
 			EmployeeWithWorkHoursList.Add(employeeWithWorkHours);
 			projectSelectEmployeesComboBox.Items.Remove(employeeToRemove);
 			projectSelectEmployeesComboBox.ResetText();
+			addWorkHoursToEmployeeNumUpDown.ResetText();
+			employeeAddToProjectButton.Hide();
 		}
 
 		private void ProjectAddNewSaveClick(object sender, EventArgs e)
@@ -98,5 +101,12 @@ namespace Employees
 
 			Close();
 		}
+
+		private void ProjectSelectEmployeesSelectItem(object sender, EventArgs e)
+		{
+			employeeAddToProjectButton.Show();
+		}
+
+		
 	}
 }

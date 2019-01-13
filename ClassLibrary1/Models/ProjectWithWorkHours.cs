@@ -7,7 +7,7 @@
 
 		public override string ToString()
 		{
-			return $"{Project.ToString()} Work hours: {WorkHours}";
+			return $"{Project.Name} Work hours: {WorkHours}";
 		}
 	}
 }
